@@ -78,7 +78,10 @@ class Agljobtemplate(object):
         job['name'] = job_name
         job['yocto_machine'] = machine
         job['priority'] = priority
-        job['urlbase'] = url
+        if url == 'demo':
+            job['urlbase'] = 'http://healthchecks.lavabox:8080/pub/agl/ci/demo'
+        else:
+            job['urlbase'] = url
         job['test_templates'] = test_templates
 
         if build_version is not None:
