@@ -12,7 +12,7 @@
 {%- set kernel_defconfig = kernel_defconfig|default("defconfig+CONFIG_AGL=y") %}
 {%- set kernel_defconfig_base = kernel_defconfig_base|default("defconfig") %}
 {%- set kernel_image = kernel_image|default('uImage') %}
-{%- set kernel_tree = kernel_tree|default("AGL-kernel-tree") %}
+{%- set kernel_tree = kernel_tree|default("AGL-yocto") %}
 {%- set kernel_url = kernel_url|default(baseurl(kernel_image)) %}
 {%- set kernel_version = kernel_version|default("AGL-kernel-version") %}
 {%- set rootfs_type = rootfs_type|default("ramdisk") %}
