@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+
+SERVER="https://jsmoeller@lava.automotivelinux.org"
+MACHINES="dra7xx-evm m3ulcb qemux86-64 raspberrypi3"
+AGLVERSION="$1"
+
+if test x"" = x"${AGLVERSION}" ; then
+    echo "Need to specify version number to test"
+    exit 1
+fi
+
+for MACHINE in $MACHINES ; do
+
+./create-jobs.py --machine ${MACHINE} --url https://download.automotivelinux.org/AGL/upload/ci/flounder/${AGLVERSION}/${MACHINE}/deploy/images/${MACHINE}/ --test all --build-type release -n AGL-Flounder-${AGLVERSION}-${MACHINE} > /tmp/1.yaml
+lava-tool submit-job https://jsmoeller@lava.automotivelinux.org /tmp/1.yaml
+
+done
