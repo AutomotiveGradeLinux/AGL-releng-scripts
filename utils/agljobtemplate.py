@@ -152,10 +152,22 @@ class Agljobtemplate(object):
             job['kernel_version'] = build_version
 
         if url_version:
-            job['kernel_version'] = url_version
+            kernel_version = url_version
+            # if this is an 'int', then it was --patchset
+            try:
+                kernel_version = "patchset-%d" % int(kernel_version)
+            except:
+                pass
+            job['kernel_version'] = kernel_version
             
         if url_branch:
-            job['vcs_branch'] = url_branch
+            vcs_branch = url_branch
+            # if this is an 'int', then it was --changeid
+            try:
+                vcs_branch = "changeid-%d" % int(vcs_branch)
+            except:
+                pass
+            job['vcs_branch'] = vcs_branch
 
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type
