@@ -17,6 +17,10 @@ timeouts:
     minutes: {{ action_timeout }}
   connection:
     minutes: {{ connection_timeout }}
+  connections:
+    lava-test-shell:
+      minutes: 10
+
 priority: {{ priority }}
 visibility: public
 {% endblock %}
