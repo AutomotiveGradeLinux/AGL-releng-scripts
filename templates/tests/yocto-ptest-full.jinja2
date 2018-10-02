@@ -1,0 +1,8 @@
+- test:
+    timeout:
+      minutes: 300
+    definitions:
+    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
+      from: git
+      path: test-suites/yocto-ptest-full.yaml
+      name: yocto-ptest-full
