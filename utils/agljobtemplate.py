@@ -112,7 +112,7 @@ class Agljobtemplate(object):
                         url_base = section[1]
                 # If not set, create a build_version from other args
                 if (not build_version) and (url_branch) and (url_version):
-                    build_version = 'AGL-' + build_type + '-' + url_branch + '-' + url_version
+                    build_version_default = 'AGL-' + build_type + '-' + url_branch + '-' + url_version
 
                 url_fragment = ''
                 if (build_type != 'default'):
@@ -150,8 +150,7 @@ class Agljobtemplate(object):
 
         if build_version is not None:
             job['kernel_version'] = build_version
-
-        if url_version:
+        elif url_version:
             kernel_version = url_version
             # if this is an 'int', then it was --patchset
             try:
@@ -159,7 +158,9 @@ class Agljobtemplate(object):
             except:
                 pass
             job['kernel_version'] = kernel_version
-            
+        elif build_version_default:
+            job['kernel_version'] = build_version_default
+        
         if url_branch:
             vcs_branch = url_branch
             # if this is an 'int', then it was --changeid
