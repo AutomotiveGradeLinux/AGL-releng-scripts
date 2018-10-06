@@ -165,7 +165,7 @@ class Agljobtemplate(object):
             vcs_branch = url_branch
             # if this is an 'int', then it was --changeid
             try:
-                vcs_branch = "changeid-%d" % int(vcs_branch)
+                vcs_branch = "gerrit-%d" % int(vcs_branch)
             except:
                 pass
             job['vcs_branch'] = vcs_branch
