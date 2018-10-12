@@ -8,7 +8,7 @@
 {%- set deploy_timeout = deploy_timeout|default(15) %}
 {%- set device_type = device_type|default(yocto_machine+"-uboot") %}
 {%- set image_type = image_type|default("AGL") %}
-{%- set job_timeout = job_timeout|default(30) %}
+{%- set job_timeout = job_timeout|default(70) %}
 {%- set kernel_defconfig = kernel_defconfig|default("defconfig+CONFIG_AGL=y") %}
 {%- set kernel_defconfig_base = kernel_defconfig_base|default("defconfig") %}
 {%- set kernel_image = kernel_image|default('uImage') %}
