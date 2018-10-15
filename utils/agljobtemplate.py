@@ -104,6 +104,7 @@ class Agljobtemplate(object):
         defaults, infra = parse_cfg_file(self._template_path, 'default.cfg', build_type)
 
         # If the user doesn't specify an URL, use the default one from the build-type
+        build_version_default = None
         if url is None:
             if infra == 'AGL':
                 url_base = ''
