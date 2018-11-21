@@ -13,12 +13,17 @@ FILE_MAP = {
     "nbdroot",
 }
 
+FILE_MAP_X86 = {
+    "kernel",
+    "initrd",
+    "nbdroot",
+}
+
 # Mapping for qemu between command line QEMU args and LAVA yaml template file names
 FILE_MAP_QEMU = {
     "kernel": "kernel",
     "initrd": "ramdisk",
 }
-
 
 def parse_cmdline(machines):
     description = "Print to stdout the file names needed to create a LAVA job"
@@ -51,15 +56,18 @@ def main():
                          url_version=args.build_type[2],
                          machine=args.machine)
     job_yaml = yaml.load(job)
-    if args.machine != "qemux86-64":
-        for key in FILE_MAP:
-            if getattr(args, key):
-                    print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
-    else:
+    if args.machine == "qemux86-64":
         for key in FILE_MAP_QEMU:
             if getattr(args, key):
                     print job_yaml["actions"][0]["deploy"]["images"][FILE_MAP_QEMU[key]].get("url").split('/')[-1]
-
+    elif args.machine == "intel-corei7-64":
+        for key in FILE_MAP_X86:
+            if getattr(args, key):
+                    print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
+    else:
+        for key in FILE_MAP:
+            if getattr(args, key):
+                    print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
 
 if __name__ == '__main__':
     main()

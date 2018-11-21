@@ -1,0 +1,46 @@
+{%- extends 'boot/generic-base-boot.jinja2' %}
+{%- set boot_method = "ipxe" %}
+{%- block main %}
+{{ super() }}
+{%- if rootfs_type == 'nbd' %}
+protocols:
+  lava-xnbd:
+    port: auto
+
+# context allows specific values to be overridden or included
+context:
+    extra_kernel_args: initrd={{ initrd }}
+{%- endif %}
+{% endblock %}
+{%- block boot %}
+{{ super() }}
+    commands: {{ boot_commands|default("ramdisk") }}
+{%- if rootfs_type == 'nbd' %}
+    transfer_overlay:
+      download_command: wget
+      unpack_command: tar -C / -xvpf
+{%- endif %}
+{%- endblock %}
+{%- block deploy -%}
+{{ super() }}
+    kernel:
+      url: {{ kernel_url }}
+{%- if rootfs_type == 'ramdisk' %}
+      type: {{ kernel_type }}
+    ramdisk:
+      url: {{ initrd_url }}
+      compression: {{ initrd_compression }}
+{%- elif rootfs_type == 'nbd' %}
+    initrd:
+      url: {{ initrd_url }}
+      allow_modify: false
+    nbdroot:
+      url: {{ rootfs_url }}
+      compression: {{ rootfs_compression }}
+{%- endif %}
+{%- if modules_url %}
+    modules:
+      url: {{ modules_url }}
+      compression: {{ modules_compression }}
+{%- endif %}
+{%- endblock %}
