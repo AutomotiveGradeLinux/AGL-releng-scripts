@@ -1,0 +1,5 @@
+    - url: {{ callback_to.backend_fqdn }}/callback/lava/test?lab_name={{ callback_to.lab_name }}&status={STATUS}&status_string={STATUS_STRING}
+      method: POST
+      dataset: all
+      token: {{ callback_to.lab_token }}
+      content-type: json

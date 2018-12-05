@@ -31,7 +31,10 @@ def parse_callback_file(template_path, lava_callback, kci_callback):
             cfg.read(callback_file_path)
             if kci_callback is None:
                 kci_callback = cfg.get('default', 'section')
-            cb_data = dict(cfg.items(kci_callback))
+                kci_callback = kci_callback.split(',')
+            cb_data = []
+            for callback_target in kci_callback:
+                cb_data.append(dict(cfg.items(callback_target)))
             return cb_data
     except (ConfigParser.NoSectionError) as err:
         str_err = "'--callback-to {}': must correspond to a section [{}] in the file '{}.cfg'".format(
@@ -161,7 +164,7 @@ class Agljobtemplate(object):
             job['kernel_version'] = kernel_version
         elif build_version_default:
             job['kernel_version'] = build_version_default
-        
+
         if url_branch:
             vcs_branch = url_branch
             # if this is an 'int', then it was --changeid
@@ -188,8 +191,7 @@ class Agljobtemplate(object):
 
         if lava_callback:
             job['do_callback'] = True
-            callback_data = parse_callback_file(self._template_path, lava_callback, kci_callback)
-            job.update(callback_data)
+            job['callback_to_list'] = parse_callback_file(self._template_path, lava_callback, kci_callback)
 
         env = jinja2.Environment(loader=jinja2.FileSystemLoader(self._template_path))
         env.filters['get_extension'] = get_extension

@@ -30,7 +30,7 @@ def parse_cmdline(machines, tests, rfs_types):
     parser.add_argument('--callback-from', action='store', dest='callback_from',
                         help='The LAVA lab (name) that will be responsible of doing the callback. '
                         'Please read: ./templates/callback/callback_readme.txt')
-    parser.add_argument('--callback-to', action='store', dest='callback_to',
+    parser.add_argument('--callback-to', nargs='+', action='store', dest='callback_to',
                         help='The KernelCI instance (name) that will receive the callback from LAVA. '
                         'Please read: ./templates/callback/callback_readme.txt')
     parser.add_argument('--test', dest='tests', action='store', choices=tests + ['all'],

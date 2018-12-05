@@ -1,0 +1,9 @@
+{%- block notify -%}
+notify:
+  criteria:
+    status: finished
+  callbacks:
+{%-for callback_to in callback_to_list %}
+{% include 'base/agl-callback-subsection.jinja2' %}
+{%- endfor %}
+{%- endblock %}
