@@ -19,5 +19,5 @@
 {{ super() }}
 context:
   console_device: ttyS0
-  custom_kernel_args: "8250.nr_uarts=1 bcm2709.uart_clock=48000000 smsc95xx.macaddr=AA:BB:CC:DD:EE:AA"
+  custom_kernel_args: "8250.nr_uarts=1 bcm2709.uart_clock=48000000 smsc95xx.macaddr=AA:BB:CC:DD:EE:AA cma=256M bcm2708_fb.fbwidth=1920 bcm2708_fb.fbheight=1080 bcm2708_fb.fbswap=1 vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000  dwc_otg.lpm_enable=0 usbhid.mousepoll=0 coherent_pool=6M"
 {% endblock %}
