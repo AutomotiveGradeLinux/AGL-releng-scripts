@@ -18,8 +18,15 @@
       history: False
       path: test-suites/short-smoke/service-check.yaml
       name: service-check
-    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
+
+- test:
+    timeout:
+      minutes: 60
+    definitions:
+    - repository: https://git.linaro.org/qa/test-definitions.git
       from: git
       history: False
-      path: test-suites/yocto-ptest.yaml
-      name: yocto-ptest
+      path: automated/linux/ptest/ptest.yaml
+      name: linaro-ptest
+      parameters:
+        TESTS: "acl attr xmlsec1 libxml2 lua"
