@@ -18,6 +18,8 @@
 {%- set rootfs_type = rootfs_type|default("ramdisk") %}
 {%- set vcs_branch = vcs_branch|default("agl-branch") %}
 {%- set vcs_url = vcs_url|default(baseurl()) %}
+{%- set vcs_commit = vcs_commit|default("agl-commit") %}
+{%- set test_plan = test_plan|default("agl-testplan") %}
 
 {# Kernel type definition #}
 {%- if kernel_image|first|lower == "i" %}
