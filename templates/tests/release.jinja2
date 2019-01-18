@@ -18,6 +18,8 @@
       history: False
       path: test-suites/short-smoke/service-check.yaml
       name: service-check
+      parameters:
+        DEVICE_TAGS: "{{ DEVICE_TAGS }}"
 
 - test:
     timeout:
