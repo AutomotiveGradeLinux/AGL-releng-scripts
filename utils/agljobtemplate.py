@@ -45,7 +45,6 @@ def parse_callback_file(template_path, lava_callback, kci_callback):
         str_err += "[releng-scripts]/templates/callback/{}.cfg".format(lava_callback)
         raise IOError(err, str_err)
 
-
 class Agljobtemplate(object):
 
     DEFAULT_PATH = "templates"
@@ -91,7 +90,7 @@ class Agljobtemplate(object):
                    lava_callback=None, kci_callback=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
                    build_type=None,
-                   build_version=None):
+                   build_version=None, device_tags=""):
 
         if machine not in self.machines:
             raise RuntimeError("{} is not a available machine".format(machine))
@@ -131,6 +130,9 @@ class Agljobtemplate(object):
                     url_fragment += '/deploy/images/' + machine
 
                 url = urlparse.urljoin(url_base, url_fragment)
+
+        device_tags = ' '.join(device_tags)
+        job['DEVICE_TAGS'] = device_tags
 
         test_templates = []
         # If the user doesn't specify tests, use the default ones from the build-type

@@ -49,6 +49,8 @@ def parse_cmdline(machines, tests, rfs_types):
                         help="The name of the modules to use (such as modules.tar.xz)")
     parser.add_argument('--build-version', dest='build_version', action='store',
                         help="the version number of the build.")
+    parser.add_argument('--device-tags', dest='device_tags', action='store',
+                        help="The device tags to be used to create the job.", nargs='*', default="")
 
     args = parser.parse_args()
 
@@ -77,7 +79,7 @@ def main():
                          dtb_image=args.dtb_img,
                          modules_image=args.modules_img,
                          build_type=args.build_type,
-                         build_version=args.build_version)
+                         build_version=args.build_version, device_tags=args.device_tags)
 
     if args.job_file is None:
         print job
