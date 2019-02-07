@@ -20,6 +20,9 @@
       name: service-check
       parameters:
         DEVICE_TAGS: "{{ DEVICE_TAGS }}"
+{% if "can" in DEVICE_TAGS %}
+{% include 'tests/can.jinja2' %}
+{% endif %}
 
 - test:
     timeout:
