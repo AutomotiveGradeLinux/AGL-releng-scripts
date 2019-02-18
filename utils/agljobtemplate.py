@@ -85,7 +85,7 @@ class Agljobtemplate(object):
     def rfs_types(self):
         return self.RFS_TYPE
 
-    def render_job(self, machine, url=None, url_branch=None, url_version=None,
+    def render_job(self, machine, url=None, changeid=None, patchset=None, version=None,
                    job_name="AGL-short-smoke", priority="medium", tests=[], rfs_type=None,
                    lava_callback=None, kci_callback=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
@@ -119,7 +119,7 @@ class Agljobtemplate(object):
 
                 url_fragment = ''
                 if (build_type != 'default'):
-                    url_fragment += url_branch + '/' + url_version + '/'
+                    url_fragment += changeid + '/' + patchset + '/'
 
                 if (machine == 'm3ulcb') or (machine == 'porter'):
                     url_fragment += machine + '-nogfx'

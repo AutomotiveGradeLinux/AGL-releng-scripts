@@ -21,10 +21,14 @@ def parse_cmdline(machines, tests, rfs_types):
     parser.add_argument('--build-type', dest='build_type', action='store',
                         help="The type of build, can be one of: {'ci', 'daily', 'weekly', 'release'}.",
                         default="default")
-    parser.add_argument('--branch', '--changeid', dest='url_branch', action='store',
-                        help='The build branch (or changeid).')
-    parser.add_argument('--version', '--patchset', dest='url_version', action='store',
-                        help='The build version (or patchset).')
+    parser.add_argument('--branch', dest='vcs_branch', action='store',
+                        help='The build branch.')
+    parser.add_argument('--changeid', dest='changeid', action='store',
+                        help='The build changeid.')
+    parser.add_argument('--version', dest='version', action='store',
+                        help='')
+    parser.add_argument('--patchset', dest='patchset', action='store',
+                        help='The build patchset.')
     parser.add_argument('--boot', action='store', dest='rfs_type',
                         choices=rfs_types, help='select boot type')
     parser.add_argument('--callback-from', action='store', dest='callback_from',
@@ -57,9 +61,13 @@ def parse_cmdline(machines, tests, rfs_types):
     if args.callback_to and not args.callback_from:
         parser.error("When using '--callback-to', '--callback-from' is mandatory.")
 
-    if (args.build_type is not "default") and (args.url is None):
-        if (not args.url_branch) or (not args.url_version):
-            parser.error("when using '--build-type' either '--url' or '--branch' and '--version' arguments needs to be set.")
+    if (args.build_type == "ci"):
+        if (not args.changeid) or (not args.patchset):
+            parser.error("when using '--build-type' '--changeid' and '--patchset' arguments needs to be set.")
+
+    if (args.build_type == "release"):
+        if (not args.vcs_branch) or (not args.version):
+            parser.error("when using '--build-type' '--branch' and '--versiom' arguments needs to be set.")
 
     return args
 
@@ -70,11 +78,11 @@ def main():
     ajt = agljobtemplate.Agljobtemplate(templates_dir)
     args = parse_cmdline(ajt.machines, ajt.tests, ajt.rfs_types)
 
-    job = ajt.render_job(url=args.url, url_branch=args.url_branch, url_version=args.url_version,
+    job = ajt.render_job(url=args.url, changeid=args.changeid, patchset=args.patchset,
                          machine=args.machine, tests=args.tests, priority=args.priority,
                          rfs_type=args.rfs_type, job_name=args.job_name,
                          lava_callback=args.callback_from, kci_callback=args.callback_to,
-                         rfs_image=args.rootfs_img,
+                         rfs_image=args.rootfs_img, version=args.version,
                          kernel_image=args.kernel_img,
                          dtb_image=args.dtb_img,
                          modules_image=args.modules_img,
