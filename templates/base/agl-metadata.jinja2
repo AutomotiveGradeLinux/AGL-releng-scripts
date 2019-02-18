@@ -14,3 +14,4 @@ metadata:
   test.plan: {{ test_plan }}
   device.type: {{ device_type }}
   job.build_environment: {{ kernel_tree }}
+ {% if (change_id) and (patch_set) %} git.url: https://gerrit.automotivelinux.org/gerrit/#/c/{{ change_id }}/{{ patch_set }} {% endif %}

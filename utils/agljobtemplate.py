@@ -175,6 +175,12 @@ class Agljobtemplate(object):
         if dtb_image is not None:
             job['dtb'] = dtb_image
 
+        if changeid is not None:
+            job['change_id'] = changeid
+
+        if patchset is not None:
+            job['patch_set'] = patchset
+
         if modules_image is not None:
             job['modules'] = modules_image
 
