@@ -106,16 +106,13 @@ class Agljobtemplate(object):
         defaults, infra = parse_cfg_file(self._template_path, 'default.cfg', build_type)
 
         # If the user doesn't specify an URL, use the default one from the build-type
-        build_version_default = None
+
         if url is None:
             if infra == 'AGL':
                 url_base = ''
                 for section in defaults:
                     if section[0] == "urlbase":
                         url_base = section[1]
-                # If not set, create a build_version from other args
-                if (not build_version) and (url_branch) and (url_version):
-                    build_version_default = 'AGL-' + build_type + '-' + url_branch + '-' + url_version
 
                 url_fragment = ''
                 if (build_type != 'default'):
@@ -154,24 +151,14 @@ class Agljobtemplate(object):
 
         job['test_templates'] = test_templates
 
-        if build_version is not None:
-            job['kernel_version'] = build_version
-        elif url_version:
-            kernel_version = url_version
-            # if this is an 'int', then it was --patchset
-            try:
-                kernel_version = "patchset-%d" % int(kernel_version)
-            except:
-                pass
-            job['kernel_version'] = kernel_version
-        elif build_version_default:
-            job['kernel_version'] = build_version_default
-
         if vcs_commit is not None:
             job['vcs_commit'] = vcs_commit
 
         if vcs_branch is not None:
             job['vcs_branch'] = vcs_branch
+
+        if build_version is not None:
+            job['kernel_version'] = build_version
 
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type
