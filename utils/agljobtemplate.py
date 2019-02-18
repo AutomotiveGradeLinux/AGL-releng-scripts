@@ -87,7 +87,7 @@ class Agljobtemplate(object):
 
     def render_job(self, machine, url=None, changeid=None, patchset=None, version=None,
                    job_name="AGL-short-smoke", priority="medium", tests=[], rfs_type=None,
-                   lava_callback=None, kci_callback=None,
+                   lava_callback=None, kci_callback=None, build_id=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
                    build_type=None, vcs_commit=None, vcs_branch=None,
                    build_version=None, device_tags=""):
@@ -159,6 +159,9 @@ class Agljobtemplate(object):
 
         if build_version is not None:
             job['kernel_version'] = build_version
+
+        if build_id is not None:
+            job['kernel_defconfig'] = build_id
 
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type

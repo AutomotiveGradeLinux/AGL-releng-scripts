@@ -57,6 +57,8 @@ def parse_cmdline(machines, tests, rfs_types):
                         help="The device tags to be used to create the job.", nargs='*', default="")
     parser.add_argument('--commit', dest='vcs_commit', action='store',
                         help="The build hash.")
+    parser.add_argument('--build-id', dest='build_id', action='store',
+                        help="The uniq build information, the build id.")
 
     args = parser.parse_args()
 
@@ -86,7 +88,7 @@ def main():
                          lava_callback=args.callback_from, kci_callback=args.callback_to,
                          rfs_image=args.rootfs_img, version=args.version,
                          kernel_image=args.kernel_img,
-                         dtb_image=args.dtb_img,
+                         dtb_image=args.dtb_img, build_id=args.build_id,
                          modules_image=args.modules_img, vcs_branch=args.vcs_branch,
                          build_type=args.build_type, vcs_commit=args.vcs_commit,
                          build_version=args.build_version, device_tags=args.device_tags)
