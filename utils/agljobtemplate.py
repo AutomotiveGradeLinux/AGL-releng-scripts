@@ -89,7 +89,7 @@ class Agljobtemplate(object):
                    job_name="AGL-short-smoke", priority="medium", tests=[], rfs_type=None,
                    lava_callback=None, kci_callback=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
-                   build_type=None,
+                   build_type=None, vcs_commit=None,
                    build_version=None, device_tags=""):
 
         if machine not in self.machines:
@@ -175,6 +175,9 @@ class Agljobtemplate(object):
             except:
                 pass
             job['vcs_branch'] = vcs_branch
+
+        if vcs_commit is not None:
+            job['vcs_commit'] = vcs_commit
 
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type

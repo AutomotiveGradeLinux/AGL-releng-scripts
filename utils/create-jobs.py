@@ -55,6 +55,8 @@ def parse_cmdline(machines, tests, rfs_types):
                         help="the version number of the build.")
     parser.add_argument('--device-tags', dest='device_tags', action='store',
                         help="The device tags to be used to create the job.", nargs='*', default="")
+    parser.add_argument('--commit', dest='vcs_commit', action='store',
+                        help="The build hash.")
 
     args = parser.parse_args()
 
@@ -86,7 +88,7 @@ def main():
                          kernel_image=args.kernel_img,
                          dtb_image=args.dtb_img,
                          modules_image=args.modules_img,
-                         build_type=args.build_type,
+                         build_type=args.build_type, vcs_commit=args.vcs_commit,
                          build_version=args.build_version, device_tags=args.device_tags)
 
     if args.job_file is None:
