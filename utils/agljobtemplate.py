@@ -89,7 +89,7 @@ class Agljobtemplate(object):
                    job_name="AGL-short-smoke", priority="medium", tests=[], rfs_type=None,
                    lava_callback=None, kci_callback=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
-                   build_type=None, vcs_commit=None,
+                   build_type=None, vcs_commit=None, vcs_branch=None,
                    build_version=None, device_tags=""):
 
         if machine not in self.machines:
@@ -167,17 +167,11 @@ class Agljobtemplate(object):
         elif build_version_default:
             job['kernel_version'] = build_version_default
 
-        if url_branch:
-            vcs_branch = url_branch
-            # if this is an 'int', then it was --changeid
-            try:
-                vcs_branch = "gerrit-%d" % int(vcs_branch)
-            except:
-                pass
-            job['vcs_branch'] = vcs_branch
-
         if vcs_commit is not None:
             job['vcs_commit'] = vcs_commit
+
+        if vcs_branch is not None:
+            job['vcs_branch'] = vcs_branch
 
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type

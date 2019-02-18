@@ -87,7 +87,7 @@ def main():
                          rfs_image=args.rootfs_img, version=args.version,
                          kernel_image=args.kernel_img,
                          dtb_image=args.dtb_img,
-                         modules_image=args.modules_img,
+                         modules_image=args.modules_img, vcs_branch=args.vcs_branch,
                          build_type=args.build_type, vcs_commit=args.vcs_commit,
                          build_version=args.build_version, device_tags=args.device_tags)
 
