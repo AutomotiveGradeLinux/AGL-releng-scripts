@@ -115,8 +115,10 @@ class Agljobtemplate(object):
                         url_base = section[1]
 
                 url_fragment = ''
-                if (build_type != 'default'):
+                if (build_type == 'ci'):
                     url_fragment += changeid + '/' + patchset + '/'
+                else:
+                    url_fragment += vcs_branch + '/' + version + '/'
 
                 if (machine == 'm3ulcb') or (machine == 'porter'):
                     url_fragment += machine + '-nogfx'
