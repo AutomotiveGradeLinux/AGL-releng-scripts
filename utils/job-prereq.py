@@ -52,8 +52,8 @@ def main():
     args = parse_cmdline(ajt.machines)
 
     job = ajt.render_job(build_type=args.build_type[0],
-                         url_branch=args.build_type[1],
-                         url_version=args.build_type[2],
+                         changeid=args.build_type[1],
+                         patchset=args.build_type[2],
                          machine=args.machine)
     job_yaml = yaml.load(job)
     if args.machine == "qemux86-64":
