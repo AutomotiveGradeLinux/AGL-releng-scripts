@@ -59,6 +59,12 @@ def parse_cmdline(machines, tests, rfs_types):
                         help="The build hash.")
     parser.add_argument('--build-id', dest='build_id', action='store',
                         help="The uniq build information, the build id.")
+    parser.add_argument('--applications-url', dest='applications_url', action='store',
+                        help="An URL pointing to applications.", default=None)
+    parser.add_argument('--app-changeid', dest='app_changeid', action='store',
+                        help="An application changeid.", default=None)
+    parser.add_argument('--app-patchset', dest='app_patchset', action='store',
+                        help="An application patchset.", default=None)
 
     args = parser.parse_args()
 
@@ -91,7 +97,9 @@ def main():
                          dtb_image=args.dtb_img, build_id=args.build_id,
                          modules_image=args.modules_img, vcs_branch=args.vcs_branch,
                          build_type=args.build_type, vcs_commit=args.vcs_commit,
-                         build_version=args.build_version, device_tags=args.device_tags)
+                         build_version=args.build_version, device_tags=args.device_tags,
+                         applications_url=args.applications_url,
+                         app_changeid=args.app_changeid, app_patchset=args.app_patchset)
 
     if args.job_file is None:
         print job

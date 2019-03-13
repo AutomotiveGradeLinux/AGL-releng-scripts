@@ -90,7 +90,8 @@ class Agljobtemplate(object):
                    lava_callback=None, kci_callback=None, build_id=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
                    build_type=None, vcs_commit=None, vcs_branch=None,
-                   build_version=None, device_tags=""):
+                   build_version=None, device_tags="",
+                   applications_url=None, app_changeid=None, app_patchset=None):
 
         if machine not in self.machines:
             raise RuntimeError("{} is not a available machine".format(machine))
@@ -130,8 +131,22 @@ class Agljobtemplate(object):
 
                 url = urlparse.urljoin(url_base, url_fragment)
 
+        if applications_url is None:
+                app_url_base = ''
+                for section in defaults:
+                    if section[0] == "urlbase":
+                        app_url_base = section[1]
+
+                app_url_fragment = ''
+
+                if app_changeid is not None:
+                    app_url_fragment += app_changeid + '/' + app_patchset
+                    applications_url = urlparse.urljoin(app_url_base, app_url_fragment)
+
         device_tags = ' '.join(device_tags)
         job['DEVICE_TAGS'] = device_tags
+        if applications_url is not None:
+            job['APPURL'] = applications_url
 
         test_templates = []
         # If the user doesn't specify tests, use the default ones from the build-type
