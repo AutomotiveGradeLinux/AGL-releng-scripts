@@ -65,11 +65,11 @@ def parse_cmdline(machines, tests, rfs_types):
     if args.callback_to and not args.callback_from:
         parser.error("When using '--callback-to', '--callback-from' is mandatory.")
 
-    if (args.build_type == "ci"):
+    if (args.build_type == "ci") and not args.url:
         if (not args.changeid) or (not args.patchset):
             parser.error("when using '--build-type' '--changeid' and '--patchset' arguments needs to be set.")
 
-    if (args.build_type == "release"):
+    if (args.build_type == "release") and not args.url:
         if (not args.vcs_branch) or (not args.version):
             parser.error("when using '--build-type' '--branch' and '--versiom' arguments needs to be set.")
 
