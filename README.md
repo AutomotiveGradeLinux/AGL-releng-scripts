@@ -28,10 +28,12 @@ Command line tool that prints the packages needed by LAVA to execute a test job.
     - Available machine names: ```{dra7xx-evm,qemux86-64,porter,m3ulcb,raspberrypi3,intel-corei7-64}```
         - For an up to date list of machine names run: ```./utils/create-jobs.py --help```
 - `--build-type`
-    - Needs three arguments formatted as follow: `{build-type-name,branch,version}`.
+    - Needs three arguments formatted as follow: `{build-type-name,branch,version/build-type-name,changeid,patchset}`.
         - the build `build-type-name` must be one of: ci, daily, weekly, release.
-        - the build `branch` or `changeid` must be a branch name or changeid number.
-        - the build `version` or `patchset` must be the version or patchset number.
+        - the build `branch` or `changeid` must be a branch name.
+        - the build `changeid` must be a changeid number.
+        - the build `version` must be the version.
+        - the build `patchset` must be the patchset number.
 
 #### Optionnal arguments
 - `--dtb`
