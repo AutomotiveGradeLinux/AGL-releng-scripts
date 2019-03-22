@@ -50,11 +50,17 @@ def main():
     templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../templates')
     ajt = agljobtemplate.Agljobtemplate(templates_dir)
     args = parse_cmdline(ajt.machines)
-
-    job = ajt.render_job(build_type=args.build_type[0],
+    if args.build_type == "ci":
+        job = ajt.render_job(build_type=args.build_type[0],
                          changeid=args.build_type[1],
                          patchset=args.build_type[2],
                          machine=args.machine)
+    else:
+        job = ajt.render_job(build_type=args.build_type[0],
+                         vcs_branch=args.build_type[1],
+                         version=args.build_type[2],
+                         machine=args.machine)
+
     job_yaml = yaml.load(job)
     if args.machine == "qemux86-64":
         for key in FILE_MAP_QEMU:
