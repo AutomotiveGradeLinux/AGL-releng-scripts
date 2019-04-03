@@ -50,7 +50,7 @@ def main():
     templates_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../templates')
     ajt = agljobtemplate.Agljobtemplate(templates_dir)
     args = parse_cmdline(ajt.machines)
-    if args.build_type == "ci":
+    if args.build_type[0] == "ci":
         job = ajt.render_job(build_type=args.build_type[0],
                          changeid=args.build_type[1],
                          patchset=args.build_type[2],
