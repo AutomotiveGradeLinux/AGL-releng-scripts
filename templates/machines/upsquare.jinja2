@@ -1,0 +1,8 @@
+{%- extends 'boot/generic-grub-tftp.jinja2' %}
+{%- set device_arch = "x86" %}
+{%- set device_mach = "intel" %}
+{%- set device_type = "upsquare" %}
+{%- set yocto_machine = "intel-corei7-64" %}
+{%- set kernel_image = kernel_image|default("bzImage") %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-intel-corei7-64.ext4.xz") %}

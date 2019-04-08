@@ -122,10 +122,12 @@ class Agljobtemplate(object):
                 else:
                     url_fragment += vcs_branch + '/' + version + '/'
 
+                machine_frag_url = machine
                 if (machine == 'm3ulcb') or (machine == 'porter'):
-                    url_fragment += machine + '-nogfx'
-                else:
-                    url_fragment += machine
+                    machine_frag_url = machine + '-nogfx'
+                if machine == "upsquare":
+                    machine_frag_url = "intel-corei7-64"
+                url_fragment += machine_frag_url
 
                 if (build_type != 'ci'):
                     url_fragment += '/deploy/images/' + machine
