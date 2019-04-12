@@ -50,6 +50,7 @@ class Agljobtemplate(object):
     DEFAULT_PATH = "templates"
     CALLBACK_DIR = "callback"
     MACHINES_DIR = "machines"
+    MACHINES_BRANCH_DIR = "machines-branch"
     TESTS_DIR = "tests"
     RFS_TYPE = ['nbd', 'ramdisk']
 
@@ -207,6 +208,12 @@ class Agljobtemplate(object):
 
         env = jinja2.Environment(loader=jinja2.FileSystemLoader(self._template_path))
         env.filters['get_extension'] = get_extension
-        template = env.get_template(os.path.join(self.MACHINES_DIR, machine + ".jinja2"))
+
+        machine_branch = machine + '-' + vcs_branch + '.jinja2'
+
+        if machine_branch in os.listdir(os.path.join(self._template_path, self.MACHINES_DIR, self.MACHINES_BRANCH_DIR)):
+            template = env.get_template(os.path.join(self.MACHINES_DIR, self.MACHINES_BRANCH_DIR, machine_branch))
+        else:
+            template = env.get_template(os.path.join(self.MACHINES_DIR, machine + ".jinja2"))
 
         return template.render(job)

@@ -41,6 +41,8 @@ def parse_cmdline(machines):
                         nargs=3,
                         help="The type of build. It defines the URL to upload to.",
                         required=True)
+    parser.add_argument('--branch', dest='vcs_branch', action='store', default='master',
+                         help='The build branch.')
 
     args = parser.parse_args()
     return args
@@ -54,12 +56,12 @@ def main():
         job = ajt.render_job(build_type=args.build_type[0],
                          changeid=args.build_type[1],
                          patchset=args.build_type[2],
-                         machine=args.machine)
+                         machine=args.machine, vcs_branch=args.vcs_branch)
     else:
         job = ajt.render_job(build_type=args.build_type[0],
-                         vcs_branch=args.build_type[1],
-                         version=args.build_type[2],
-                         machine=args.machine)
+                        vcs_branch=args.vcs_branch,
+                        version=args.build_type[2],
+                        machine=args.machine)
 
     job_yaml = yaml.load(job)
     if args.machine == "qemux86-64":
