@@ -136,20 +136,21 @@ class Agljobtemplate(object):
 
         if applications_url is None:
                 app_url_base = ''
-                for section in defaults:
+                # WGT will be always uploaded in ci
+                appdefaults, appinfra = parse_cfg_file(self._template_path, 'default.cfg', 'ci')
+                for section in appdefaults:
                     if section[0] == "urlbase":
                         app_url_base = section[1]
 
-                app_url_fragment = ''
-
-                if app_changeid is not None:
-                    app_url_fragment += app_changeid + '/' + app_patchset
-                    applications_url = urlparse.urljoin(app_url_base, app_url_fragment)
+                job['app_changeid'] = app_changeid
+                job['app_patchset'] = app_patchset
+                job['app_url_base'] = app_url_base
+                job['APPURL'] = 'automatic'
+        else:
+                job['APPURL'] = applications_url
 
         device_tags = ' '.join(device_tags)
         job['DEVICE_TAGS'] = device_tags
-        if applications_url is not None:
-            job['APPURL'] = applications_url
 
         test_templates = []
         # If the user doesn't specify tests, use the default ones from the build-type

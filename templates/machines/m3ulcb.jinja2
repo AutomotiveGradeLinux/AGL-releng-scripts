@@ -1,5 +1,6 @@
 {%- extends 'boot/generic-uboot-tftp.jinja2' %}
 {%- set device_arch = "arm64" %}
+{%- set sdk_arch = "aarch64" %}
 {%- set device_mach = "renesas" %}
 {%- set device_type = "r8a7796-m3ulcb" %}
 {%- set dtb = dtb|default("r8a7796-m3ulcb.dtb") %}

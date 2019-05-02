@@ -8,4 +8,8 @@
       path: test-suites/short-smoke/application-lifecycle.yaml
       name: application-lifecycle
       parameters:
+{%- if APPURL != 'automatic' %}
         APPURL: "{{ APPURL }}"
+{%- else %}
+        APPURL: "{{app_url_base}}/{{ app_changeid }}/{{ app_patchset }}/{{ vcs_branch }}/{{ sdk_arch }}"
+{%- endif %}

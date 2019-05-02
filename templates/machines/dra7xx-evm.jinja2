@@ -1,6 +1,7 @@
 {%- extends 'boot/generic-uboot-tftp.jinja2' %}
 {%- set device_type = "dra7-evm" %}
 {%- set device_arch = "arm" %}
+{%- set sdk_arch = "arm" %}
 {%- set device_mach = "omap2" %}
 {%- set dtb = dtb|default("dra7-evm.dtb") %}
 {%- set kernel_image = kernel_image|default("zImage") %}
