@@ -21,10 +21,6 @@
       parameters:
         DEVICE_TAGS: "{{ DEVICE_TAGS }}"
 
-{% if APPURL is defined %}
-{% include 'tests/application-lifecycle.jinja2' %}
-{% endif %}
-
 - test:
     timeout:
       minutes: 60
