@@ -123,7 +123,7 @@ class Agljobtemplate(object):
                     url_fragment += vcs_branch + '/' + version + '/'
 
                 machine_frag_url = machine
-                if (machine == 'm3ulcb') or (machine == 'porter'):
+                if (machine == 'm3ulcb'):
                     machine_frag_url = machine + '-nogfx'
                 if machine == "upsquare":
                     machine_frag_url = "intel-corei7-64"

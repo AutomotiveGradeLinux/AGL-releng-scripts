@@ -25,7 +25,7 @@ Command line tool that prints the packages needed by LAVA to execute a test job.
 
 #### Required arguments:
 - `--machine`
-    - Available machine names: ```{dra7xx-evm,qemux86-64,porter,m3ulcb,raspberrypi3,intel-corei7-64}```
+    - Available machine names: ```{dra7xx-evm,qemux86-64,m3ulcb,raspberrypi3,intel-corei7-64}```
         - For an up to date list of machine names run: ```./utils/create-jobs.py --help```
 - `--build-type`
     - Needs three arguments formatted as follow: `{build-type-name,branch,version/build-type-name,changeid,patchset}`.
@@ -53,7 +53,6 @@ _Examples:_
 ./utils/job-prereq.py --machine raspberrypi3 --build-type {release,eel,v4.9.3} --kernel --initrd --nbdroot --dtb
 ./utils/job-prereq.py --machine m3ulcb --build-type {daily,eel,v4.9.3} --kernel --dtb
 ./utils/job-prereq.py --machine dra7xx-evm --build-type {ci,11524,2} --initrd --nbdroot
-./utils/job-prereq.py --machine porter --build-type {ci,11524,2} --kernel --initrd --nbdroot --dtb
 ./utils/job-prereq.py --machine intel-corei7-64 --build-type {ci,11524,2} --kernel --initrd --nbdroot
 ```
 
@@ -63,7 +62,7 @@ Command line tool to generate AGL jobs for LAVA.
 
 ##### Required arguments:
 - ```./utils/create-jobs.py --machine machine-name```
-    - Available machine names: ```{dra7xx-evm,qemux86-64,porter,m3ulcb,raspberrypi3,intel-corei7-64}```
+    - Available machine names: ```{dra7xx-evm,qemux86-64,m3ulcb,raspberrypi3,intel-corei7-64}```
     - For an up to date list of machine names run: ```./utils/create-jobs.py --help```
 
 ##### Artifacts fetching from URL:

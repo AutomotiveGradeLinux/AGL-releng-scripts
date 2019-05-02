@@ -1,7 +1,0 @@
-{%- extends 'boot/generic-uboot-tftp.jinja2' %}
-{%- set device_arch = "arm64" %}
-{%- set device_mach = "renesas" %}
-{%- set device_type = "renesas-porter-uboot" %}
-{%- set dtb = dtb|default("r8a7791-porter.dtb") %}
-{%- set initrd = initrd|default("initramfs-netboot-image-" + yocto_machine +".ext4.gz.u-boot") %}
-{%- set rootfs_type = rootfs_type|default("nbd") %}
