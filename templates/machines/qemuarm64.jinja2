@@ -1,0 +1,19 @@
+{%- extends 'boot/generic-qemu-tmpfs.jinja2' %}
+{%- set deploy_to = "tmpfs" %}
+{%- set device_type = "qemu" %}
+{%- set kernel_image = "Image" %}
+{%- set device_arch = "arm64" %}
+{%- set sdk_arch = "aarch64" %}
+{%- set device_mach = "arm64" %}
+{%- set qemu_arch = "aarch64" %}
+{%- set qemu_cpu = "cortex-a57" %}
+{%- set qemu_machine = "virt" %}
+{%- set qemu_memory = "2048" %}
+{%- set qemu_args = "-smp 2 -soundhw hda -device usb-ehci" %}
+{%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda debug verbose systemd.log_color=false " %}
+{%- set rootfs_type = rootfs_type|default("ramdisk") %}
+{%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') %}
+    {%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-qemuarm64.ext4.xz") %}
+{%- else %}
+	{%- set rfs_image = rfs_image|default("agl-demo-platform-qemuarm64.ext4.xz") %}
+{%- endif %}
