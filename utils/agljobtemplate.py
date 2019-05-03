@@ -130,7 +130,7 @@ class Agljobtemplate(object):
                 url_fragment += machine_frag_url
 
                 if (build_type != 'ci'):
-                    url_fragment += '/deploy/images/' + machine
+                    url_fragment += '/deploy/images/' + machine_frag_url
 
                 url = urlparse.urljoin(url_base, url_fragment)
 
