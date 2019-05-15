@@ -11,5 +11,5 @@
 {%- if APPURL != 'automatic' %}
         APPURL: "{{ APPURL }}"
 {%- else %}
-        APPURL: "{{app_url_base}}/{{ app_changeid }}/{{ app_patchset }}/{{ vcs_branch }}/{{ sdk_arch }}"
+        APPURL: "{{app_url_base}}/{{ app_changeid }}/{{ app_patchset }}/{{ app_branch }}/{{ sdk_arch }}"
 {%- endif %}

@@ -92,7 +92,7 @@ class Agljobtemplate(object):
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
                    build_type=None, vcs_commit=None, vcs_branch=None,
                    build_version=None, device_tags="",
-                   applications_url=None, app_changeid=None, app_patchset=None):
+                   applications_url=None, app_changeid=None, app_patchset=None, app_branch=None):
 
         if machine not in self.machines:
             raise RuntimeError("{} is not a available machine".format(machine))
@@ -144,6 +144,7 @@ class Agljobtemplate(object):
 
                 job['app_changeid'] = app_changeid
                 job['app_patchset'] = app_patchset
+                job['app_branch'] = app_branch
                 job['app_url_base'] = app_url_base
                 job['APPURL'] = 'automatic'
         else:

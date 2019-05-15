@@ -65,6 +65,8 @@ def parse_cmdline(machines, tests, rfs_types):
                         help="An application changeid.", default=None)
     parser.add_argument('--app-patchset', dest='app_patchset', action='store',
                         help="An application patchset.", default=None)
+    parser.add_argument('--app-branch', dest='app_branch', action='store',
+                        help="An application branch.", default="master")
 
     args = parser.parse_args()
 
@@ -99,7 +101,7 @@ def main():
                          build_type=args.build_type, vcs_commit=args.vcs_commit,
                          build_version=args.build_version, device_tags=args.device_tags,
                          applications_url=args.applications_url,
-                         app_changeid=args.app_changeid, app_patchset=args.app_patchset)
+                         app_changeid=args.app_changeid, app_patchset=args.app_patchset, app_branch=args.app_branch)
 
     if args.job_file is None:
         print job
