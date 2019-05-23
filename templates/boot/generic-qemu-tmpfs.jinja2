@@ -12,6 +12,15 @@
 context:
     no_kvm: false
     arch: {{ qemu_arch }}
+{%- if qemu_cpu is defined %}
+    cpu: {{ qemu_cpu }}
+{%- endif %}
+{%- if qemu_machine is defined %}
+    machine: {{ qemu_machine }}
+{%- endif %}
+{%- if qemu_memory is defined %}
+    memory: {{ qemu_memory }}
+{%- endif %}
     extra_options: ["{{ qemu_args }}"]
 {% endblock %}
 {%- block deploy -%}
