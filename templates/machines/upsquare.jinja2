@@ -6,4 +6,8 @@
 {%- set yocto_machine = "intel-corei7-64" %}
 {%- set kernel_image = kernel_image|default("bzImage") %}
 {%- set rootfs_type = rootfs_type|default("nbd") %}
-{%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-intel-corei7-64.ext4.xz") %}
+{%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') %}
+    {%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-intel-corei7-64.ext4.xz") %}
+{%- else %}
+    {%- set rfs_image = rfs_image|default("agl-demo-platform-intel-corei7-64.ext4.xz") %}
+{%- endif %}
