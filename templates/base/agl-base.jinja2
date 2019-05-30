@@ -8,6 +8,13 @@
 {% endif %}
 {%- block main %}
 device_type: {{ device_type }}
+{%- if DEVICE_TAGS %}
+tags:
+{%- for tag in DEVICE_TAGS %}
+- {{ tag|lower }}
+{%- endfor %}
+{%- endif %}
+
 job_name: {{ name }}
 
 timeouts:

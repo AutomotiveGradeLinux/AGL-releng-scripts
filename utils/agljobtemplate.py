@@ -150,7 +150,6 @@ class Agljobtemplate(object):
         else:
                 job['APPURL'] = applications_url
 
-        device_tags = ' '.join(device_tags)
         job['DEVICE_TAGS'] = device_tags
 
         test_templates = []
