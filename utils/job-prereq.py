@@ -64,7 +64,7 @@ def main():
                         machine=args.machine)
 
     job_yaml = yaml.load(job)
-    if args.machine == "qemux86-64":
+    if args.machine == "qemux86-64" or args.machine == "qemuarm" or args.machine == "qemuarm64":
         for key in FILE_MAP_QEMU:
             if getattr(args, key):
                     print job_yaml["actions"][0]["deploy"]["images"][FILE_MAP_QEMU[key]].get("url").split('/')[-1]
