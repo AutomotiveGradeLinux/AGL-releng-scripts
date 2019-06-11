@@ -63,7 +63,7 @@ def main():
                         version=args.build_type[2],
                         machine=args.machine)
 
-    job_yaml = yaml.load(job)
+    job_yaml = yaml.safe_load(job)
     if args.machine == "qemux86-64" or args.machine == "qemuarm" or args.machine == "qemuarm64":
         for key in FILE_MAP_QEMU:
             if getattr(args, key):
