@@ -119,6 +119,10 @@ class Agljobtemplate(object):
                 url_fragment = ''
                 if (build_type == 'ci'):
                     url_fragment += changeid + '/' + patchset + '/'
+                elif (build_type == 'snapshot' or build_type == 'weekly' or build_type == 'daily') and (not vcs_branch and not version):
+                    vcs_branch = 'master'
+                    version = 'latest'
+                    url_fragment += vcs_branch + '/' + version + '/'
                 else:
                     url_fragment += vcs_branch + '/' + version + '/'
 
