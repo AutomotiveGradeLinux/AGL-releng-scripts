@@ -10,7 +10,7 @@
 {%- set qemu_machine = "virt" %}
 {%- set qemu_memory = "2048" %}
 {%- set qemu_args = "-smp 2 -soundhw hda -device usb-ehci" %}
-{%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda debug verbose systemd.log_color=false " %}
+{%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda verbose systemd.log_color=false " %}
 {%- set rootfs_type = rootfs_type|default("ramdisk") %}
 {%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') %}
     {%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-qemuarm64.ext4.xz") %}
