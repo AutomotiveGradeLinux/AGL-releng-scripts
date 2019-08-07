@@ -19,6 +19,7 @@
       path: test-suites/short-smoke/service-check.yaml
       name: service-check
       parameters:
+        BUILD_TAGS: "{{ BUILD_TAGS }}"
         DEVICE_TAGS: "{{ DEVICE_TAGS }}"
 
 - test:

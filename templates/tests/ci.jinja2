@@ -18,10 +18,9 @@
       history: False
       path: test-suites/short-smoke/service-check.yaml
       name: service-check
-{%- if DEVICE_TAGS %}
       parameters:
+        BUILD_TAGS: "{{ BUILD_TAGS|join(' ')|lower }}"
         DEVICE_TAGS: "{{ DEVICE_TAGS|join(' ')|lower }}"
-{%- endif -%}
 
 {% if "can" in DEVICE_TAGS|lower %}
 {% include 'tests/can.jinja2' %}

@@ -91,7 +91,7 @@ class Agljobtemplate(object):
                    lava_callback=None, kci_callback=None, build_id=None,
                    rfs_image=None, kernel_image=None, dtb_image=None, modules_image=None,
                    build_type=None, vcs_commit=None, vcs_branch=None,
-                   build_version=None, device_tags="",
+                   build_version=None, device_tags="", build_tags="",
                    applications_url=None, app_changeid=None, app_patchset=None, app_branch=None):
 
         if machine not in self.machines:
@@ -157,6 +157,7 @@ class Agljobtemplate(object):
                 job['APPURL'] = applications_url
 
         job['DEVICE_TAGS'] = device_tags
+        job['BUILD_TAGS'] = build_tags
 
         test_templates = []
         # If the user doesn't specify tests, use the default ones from the build-type
