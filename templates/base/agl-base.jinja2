@@ -14,12 +14,6 @@ tags:
 - {{ tag|lower }}
 {%- endfor %}
 {%- endif %}
-{%- if BUILD_TAGS %}
-build-tags:
-{%- for tag in BUILD_TAGS %}
-- {{ tag|lower }}
-{%- endfor %}
-{%- endif %}
 
 job_name: {{ name }}
 
