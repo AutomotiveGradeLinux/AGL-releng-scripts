@@ -23,7 +23,11 @@
         DEVICE_TAGS: "{{ DEVICE_TAGS|join(' ')|lower }}"
 
 {% if "can" in DEVICE_TAGS|lower %}
-{% include 'tests/can.jinja2' %}
+{% include 'tests/test_can_loopback.jinja2' %}
+{% endif %}
+
+{% if "can_if_hw_connection" in DEVICE_TAGS|lower %}
+{% include 'tests/can_if_hw_connection.jinja2' %}
 {% endif %}
 
 - test:
