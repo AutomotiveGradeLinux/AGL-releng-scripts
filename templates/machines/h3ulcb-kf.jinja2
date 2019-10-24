@@ -1,0 +1,10 @@
+{%- extends 'boot/generic-uboot-tftp.jinja2' %}
+{%- set device_arch = "arm64" %}
+{%- set sdk_arch = "aarch64" %}
+{%- set device_mach = "renesas" %}
+{%- set device_type = "r8a7795-h3ulcb-kf" %}
+{%- set dtb = dtb|default("r8a7795-h3ulcb-4x2g-kf.dtb") %}
+{%- set kernel_image = kernel_image|default("Image") %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set uboot_type = "booti" %}
+{%- set rfs_image = rfs_image|default("agl-image-ivi-crosssdk-h3ulcb.ext4.xz") %}
