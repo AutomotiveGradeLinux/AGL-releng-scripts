@@ -128,6 +128,10 @@ class Agljobtemplate(object):
 
                 machine_frag_url = machine
                 build_name = machine
+                if (machine == 'h3ulcb'):
+                    build_name = machine + '-nogfx'
+                if (machine == 'h3ulcb-kf'):
+                    build_name = 'h3ulcb-nogfx'
                 if (machine == 'm3ulcb'):
                     build_name = machine + '-nogfx'
                 if machine == "upsquare":
