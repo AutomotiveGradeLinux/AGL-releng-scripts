@@ -19,6 +19,7 @@
 {%- set vcs_branch = vcs_branch|default("agl-branch") %}
 {%- set vcs_url = vcs_url|default(baseurl()) %}
 {%- set vcs_commit = vcs_commit|default("agl-commit") %}
+{%- set job_base_url = job_base_url|default("https://lava.automotivelinux.org/")  %}
 {%- set test_plan = test_plan|default("agl-testplan") %}
 
 {# Kernel type definition #}
