@@ -68,7 +68,7 @@ def main():
         for key in FILE_MAP_QEMU:
             if getattr(args, key):
                     print job_yaml["actions"][0]["deploy"]["images"][FILE_MAP_QEMU[key]].get("url").split('/')[-1]
-    elif args.machine == "intel-corei7-64":
+    elif args.machine == "intel-corei7-64" or args.machine == "upsquare":
         for key in FILE_MAP_X86:
             if getattr(args, key):
                     print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
