@@ -19,5 +19,5 @@
 {{ super() }}
 context:
   console_device: ttyS0
-  extra_kernel_args: "8250.nr_uarts=1 cma=64M fstab=no"
+  extra_kernel_args: "8250.nr_uarts=1 cma=64M rw fstab=no"
 {% endblock %}
