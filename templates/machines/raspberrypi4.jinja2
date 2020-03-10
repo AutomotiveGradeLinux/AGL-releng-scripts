@@ -6,7 +6,7 @@
 {%- set rootfs_type = rootfs_type|default("nbd") %}
 {%- set kernel_image = kernel_image|default("uImage") %}
 {%- if rootfs_type == 'nbd' %}
-    {%- set initrd = "initramfs-netboot-image-" + yocto_machine +".ext4.gz" %}
+    {%- set initrd = "initramfs-netboot-image-" + yocto_machine +".ext4.gz.u-boot" %}
 {%- endif %}
 {%- set dtb = dtb|default("bcm2711-rpi-4-b.dtb") %}
 {%- if (build_type == 'daily') or (build_type == 'release') %}
