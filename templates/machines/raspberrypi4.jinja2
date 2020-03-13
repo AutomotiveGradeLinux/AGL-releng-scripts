@@ -5,6 +5,7 @@
 {%- set device_type = "bcm2711-rpi-4-b" %}
 {%- set rootfs_type = rootfs_type|default("nbd") %}
 {%- set kernel_image = kernel_image|default("Image") %}
+{%- set uboot_type = "booti" %}
 {%- if rootfs_type == 'nbd' %}
     {%- set initrd = "initramfs-netboot-image-" + yocto_machine +".ext4.gz" %}
 {%- endif %}
