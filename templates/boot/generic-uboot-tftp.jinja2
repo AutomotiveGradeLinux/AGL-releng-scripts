@@ -12,7 +12,6 @@ protocols:
 {{ super() }}
     commands: {{ boot_commands|default("ramdisk") }}
 {%- if rootfs_type == 'nbd' %}
-    type: {{ uboot_type|default("bootm") }}
     transfer_overlay:
       download_command: wget
       unpack_command: tar -C / -xvpf
@@ -22,8 +21,8 @@ protocols:
 {{ super() }}
     kernel:
       url: {{ kernel_url }}
-{%- if rootfs_type == 'ramdisk' %}
       type: {{ kernel_type }}
+{%- if rootfs_type == 'ramdisk' %}
     ramdisk:
       url: {{ initrd_url }}
       compression: {{ initrd_compression }}
