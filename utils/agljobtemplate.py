@@ -188,6 +188,7 @@ class Agljobtemplate(object):
 
         if vcs_branch is not None:
             job['vcs_branch'] = vcs_branch
+            machine_branch = machine + '-' + vcs_branch + '.jinja2'
 
         if build_version is not None:
             job['kernel_version'] = build_version
@@ -223,9 +224,7 @@ class Agljobtemplate(object):
         env = jinja2.Environment(loader=jinja2.FileSystemLoader(self._template_path))
         env.filters['get_extension'] = get_extension
 
-        machine_branch = machine + '-' + vcs_branch + '.jinja2'
-
-        if machine_branch in os.listdir(os.path.join(self._template_path, self.MACHINES_DIR, self.MACHINES_BRANCH_DIR)):
+        if machine_branch and machine_branch in os.listdir(os.path.join(self._template_path, self.MACHINES_DIR, self.MACHINES_BRANCH_DIR)):
             template = env.get_template(os.path.join(self.MACHINES_DIR, self.MACHINES_BRANCH_DIR, machine_branch))
         else:
             template = env.get_template(os.path.join(self.MACHINES_DIR, machine + ".jinja2"))
