@@ -182,6 +182,7 @@ class Agljobtemplate(object):
         job['urlbase'] = url
 
         job['test_templates'] = test_templates
+        machine_branch = None
 
         if vcs_commit is not None:
             job['vcs_commit'] = vcs_commit
