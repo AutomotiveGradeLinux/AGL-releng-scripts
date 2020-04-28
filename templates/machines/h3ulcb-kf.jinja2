@@ -4,7 +4,9 @@
 {%- set device_mach = "renesas" %}
 {%- set device_type = "r8a7795-h3ulcb-kf" %}
 # this DTB is on linux-renesas only, not mainlined
-{%- set dtb = dtb|default("r8a7795-h3ulcb-4x2g-kf.dtb") %}
+#{%- set dtb = dtb|default("r8a7795-h3ulcb-4x2g-kf.dtb") %}
+# temporary use plain h3 and no KF
+{%- set dtb = dtb|default("r8a7795-h3ulcb-4x2g.dtb") %}
 {%- set kernel_image = kernel_image|default("Image") %}
 {%- set rootfs_type = rootfs_type|default("nbd") %}
 {%- set uboot_type = "booti" %}
