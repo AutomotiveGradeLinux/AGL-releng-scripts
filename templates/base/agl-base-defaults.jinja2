@@ -40,6 +40,8 @@
     {%- set rootfs_url = rootfs_url|default(baseurl(rootfs)) %}
 {%- elif rootfs_type == 'ramdisk' %}
     {%- set initrd = rfs_image|default("initramfs-boot-image-" + yocto_machine + ".gz") %}
+{%- elif rootfs_type == 'rootvd' %}
+    {%- set initrd = rfs_image|default("initramfs-boot-image-" + yocto_machine + ".gz") %}
 {%- endif %}
 
 {%- set initrd_compression = (initrd|get_extension) %}

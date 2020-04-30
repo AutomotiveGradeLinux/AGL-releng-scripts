@@ -32,9 +32,9 @@ context:
         kernel:
            image_arg: '-kernel {kernel} -append "{{ qemu_cmdline }}"'
            url: {{ kernel_url }}
-{%- if initrd_url and rootfs_type == 'ramdisk' %}
-        ramdisk:
-           image_arg: '-drive format=raw,file={ramdisk}'
+{%- if initrd_url and rootfs_type == 'rootvd' %}
+        rootvd:
+           image_arg: '-drive format=raw,file={rootvd}'
            url: {{ initrd_url }}
            compression: {{ initrd_compression }}
 {%- endif %}
