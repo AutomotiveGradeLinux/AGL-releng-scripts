@@ -22,7 +22,7 @@ FILE_MAP_X86 = {
 # Mapping for qemu between command line QEMU args and LAVA yaml template file names
 FILE_MAP_QEMU = {
     "kernel": "kernel",
-    "initrd": "ramdisk",
+    "initrd": "rootvd",
 }
 
 def parse_cmdline(machines):
