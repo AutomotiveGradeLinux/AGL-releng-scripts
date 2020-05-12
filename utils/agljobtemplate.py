@@ -119,6 +119,8 @@ class Agljobtemplate(object):
                 url_fragment = ''
                 if (build_type == 'ci'):
                     url_fragment += changeid + '/' + patchset + '/'
+                    if not vcs_branch:
+                        vcs_branch = 'master'
                 elif (build_type == 'snapshot' or build_type == 'weekly' or build_type == 'daily') and (not vcs_branch and not version):
                     vcs_branch = 'master'
                     version = 'latest'
@@ -137,6 +139,10 @@ class Agljobtemplate(object):
                 if machine == "upsquare":
                     machine_frag_url = "intel-corei7-64"
                     build_name = "intel-corei7-64"
+                if vcs_branch == "master" and (machine == "raspberrypi4" or machine == "raspberrypi4-64"):
+                    machine_frag_url = "raspberrypi4-64"
+                    build_name = "raspberrypi4"
+                    job['yocto_machine'] = "raspberrypi4-64"
                 url_fragment += build_name
 
                 if (build_type != 'ci'):
