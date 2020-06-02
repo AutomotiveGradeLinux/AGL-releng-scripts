@@ -19,7 +19,7 @@ def parse_cmdline(machines, tests, rfs_types):
     parser.add_argument('--url', '-u', action='store', dest='url',
                         help="If using a custom URL specify it there. The files will be fetched from this URL.")
     parser.add_argument('--build-type', dest='build_type', action='store',
-                        help="The type of build, can be one of: {'ci', 'daily', 'weekly', 'release'}.",
+                        help="The type of build, can be one of: {'ci', 'daily', 'weekly', 'release', 'prerelease'}.",
                         default="default")
     parser.add_argument('--branch', dest='vcs_branch', action='store',
                         help='The build branch.')
@@ -81,7 +81,11 @@ def parse_cmdline(machines, tests, rfs_types):
 
     if (args.build_type == "release") and not args.url:
         if (not args.vcs_branch) or (not args.version):
-            parser.error("when using '--build-type' '--branch' and '--versiom' arguments needs to be set.")
+            parser.error("when using '--build-type' '--branch' and '--version' arguments needs to be set.")
+
+    if (args.build_type == "prerelease") and not args.url:
+        if (not args.vcs_branch) or (not args.version):
+            parser.error("when using '--build-type' '--branch' and '--version' arguments needs to be set.")
 
     return args
 

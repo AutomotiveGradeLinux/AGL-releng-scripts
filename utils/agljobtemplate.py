@@ -134,11 +134,12 @@ class Agljobtemplate(object):
                     build_name = machine + '-nogfx'
                 if (machine == 'h3ulcb-kf'):
                     build_name = 'h3ulcb-nogfx'
+                    machine_frag_url = 'h3ulcb'
                 if (machine == 'm3ulcb'):
                     build_name = machine + '-nogfx'
                 if machine == "upsquare":
-                    machine_frag_url = "intel-corei7-64"
-                    build_name = "intel-corei7-64"
+                    machine_frag_url = "qemux86-64"
+                    build_name = "qemux86-64"
                 if vcs_branch == "master" and (machine == "raspberrypi4" or machine == "raspberrypi4-64"):
                     machine_frag_url = "raspberrypi4-64"
                     build_name = "raspberrypi4"

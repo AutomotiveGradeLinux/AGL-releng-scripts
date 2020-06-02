@@ -39,7 +39,7 @@ def parse_cmdline(machines):
     parser.add_argument('--nbdroot', action='store_true')
     parser.add_argument('--build-type', action='store', dest='build_type',
                         nargs=3,
-                        help="The type of build. It defines the URL to upload to.",
+                        help="The type of build. It defines the URL to upload to. (ci, release, prerelease)",
                         required=True)
     parser.add_argument('--branch', dest='vcs_branch', action='store', default='master',
                          help='The build branch.')

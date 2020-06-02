@@ -13,7 +13,7 @@
 {%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda verbose systemd.log_color=false " %}
 {%- set guestfs_interface = "virtio" %}
 {%- set rootfs_type = rootfs_type|default("rootvd") %}
-{%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') %}
+{%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') or (build_type == 'prerelease') %}
     {%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-qemuarm.ext4.xz") %}
 {%- else %}
 	{%- set rfs_image = rfs_image|default("agl-demo-platform-qemuarm.ext4.xz") %}

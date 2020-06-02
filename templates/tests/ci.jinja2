@@ -7,17 +7,17 @@
       from: git
       history: False
       path: test-suites/short-smoke/busybox.yaml
-      name: busybox
+      name: ci-busybox
     - repository: https://git.automotivelinux.org/src/qa-testdefinitions
       from: git
       history: False
       path: test-suites/short-smoke/smoke-tests-basic.yaml
-      name: smoke-tests-basic
+      name: ci-smoke-tests-basic
     - repository: https://git.automotivelinux.org/src/qa-testdefinitions
       from: git
       history: False
       path: test-suites/short-smoke/service-check.yaml
-      name: service-check
+      name: ci-service-check
       parameters:
         BUILD_TAGS: "{{ BUILD_TAGS|join(' ')|lower }}"
         DEVICE_TAGS: "{{ DEVICE_TAGS|join(' ')|lower }}"
@@ -38,6 +38,6 @@
       from: git
       history: False
       path: automated/linux/ptest/ptest.yaml
-      name: linaro-ptest
+      name: ci-linaro-ptest
       parameters:
         TESTS: "xmlsec1 libxml2 lua"
