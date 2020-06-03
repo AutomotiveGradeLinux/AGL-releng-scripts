@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import agljobtemplate
@@ -110,16 +110,16 @@ def main():
                          app_changeid=args.app_changeid, app_patchset=args.app_patchset, app_branch=args.app_branch)
 
     if args.job_file is None:
-        print job
+        print(job)
     else:
         try:
             with open(args.job_file, 'w') as j:
                 j.write(job)
         except IOError as e:
-            print "{}: {}".format(e.strerror, args.job_file)
+            print("{}: {}".format(e.strerror, args.job_file))
             exit(e.errno)
         else:
-            print "Job written to: {}".format(args.job_file)
+            print("Job written to: {}".format(args.job_file))
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import agljobtemplate
@@ -67,15 +67,15 @@ def main():
     if args.machine == "qemux86-64" or args.machine == "qemuarm" or args.machine == "qemuarm64":
         for key in FILE_MAP_QEMU:
             if getattr(args, key):
-                    print job_yaml["actions"][0]["deploy"]["images"][FILE_MAP_QEMU[key]].get("url").split('/')[-1]
+                    print(job_yaml["actions"][0]["deploy"]["images"][FILE_MAP_QEMU[key]].get("url").split('/')[-1])
     elif args.machine == "intel-corei7-64" or args.machine == "upsquare":
         for key in FILE_MAP_X86:
             if getattr(args, key):
-                    print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
+                    print(job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1])
     else:
         for key in FILE_MAP:
             if getattr(args, key):
-                    print job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1]
+                    print(job_yaml["actions"][0]["deploy"][key].get("url").split('/')[-1])
 
 if __name__ == '__main__':
     main()

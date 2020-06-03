@@ -1,10 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
 import jinja2
-import ConfigParser
-import urlparse
+import configparser
+from urllib.parse import urlparse
+from urllib.parse import urljoin
 import ast
 
 
@@ -16,7 +17,7 @@ def parse_cfg_file(template_path, cfg_file, build_type):
     url_file_path = template_path + '/config/' + cfg_file
     try:
         with open(url_file_path):
-            cfg = ConfigParser.ConfigParser()
+            cfg = configparser.ConfigParser()
             cfg.read(url_file_path)
             return cfg.items(build_type), cfg.get('infra', 'style')
     except IOError as err:
@@ -27,7 +28,7 @@ def parse_callback_file(template_path, lava_callback, kci_callback):
     callback_file_path = template_path + '/callback/' + lava_callback + '.cfg'
     try:
         with open(callback_file_path):
-            cfg = ConfigParser.ConfigParser()
+            cfg = configparser.ConfigParser()
             cfg.read(callback_file_path)
             if kci_callback is None:
                 kci_callback = cfg.get('default', 'section')
@@ -36,10 +37,10 @@ def parse_callback_file(template_path, lava_callback, kci_callback):
             for callback_target in kci_callback:
                 cb_data.append(dict(cfg.items(callback_target)))
             return cb_data
-    except (ConfigParser.NoSectionError) as err:
+    except (configparser.NoSectionError) as err:
         str_err = "'--callback-to {}': must correspond to a section [{}] in the file '{}.cfg'".format(
             kci_callback, kci_callback, lava_callback)
-        raise ConfigParser.NoSectionError(str_err)
+        raise configparser.NoSectionError(str_err)
     except (IOError) as err:
         str_err = "\n'--callback-from {}': must correspond to a file located in: ".format(lava_callback)
         str_err += "[releng-scripts]/templates/callback/{}.cfg".format(lava_callback)
@@ -149,7 +150,7 @@ class Agljobtemplate(object):
                 if (build_type != 'ci'):
                     url_fragment += '/deploy/images/' + machine_frag_url
 
-                url = urlparse.urljoin(url_base, url_fragment)
+                url = urljoin(url_base, url_fragment)
 
         if applications_url is None:
                 app_url_base = ''
