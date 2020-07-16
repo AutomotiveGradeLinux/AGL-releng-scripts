@@ -6,6 +6,7 @@ import jinja2
 import configparser
 from urllib.parse import urlparse
 from urllib.parse import urljoin
+from urllib.parse import urlsplit
 import ast
 
 
@@ -188,6 +189,7 @@ class Agljobtemplate(object):
                 raise RuntimeError("{} is not an available test".format(t))
 
         job['urlbase'] = url
+        job["resource_path"] = urlsplit(url).path.lstrip("/")
 
         job['test_templates'] = test_templates
         machine_branch = None
@@ -213,6 +215,9 @@ class Agljobtemplate(object):
 
         if kernel_image is not None:
             job['kernel_image'] = kernel_image
+
+        # hardcoded but arm/arm64/x86 are little by default
+        job["kernel_endian"] = 'little'
 
         if dtb_image is not None:
             job['dtb'] = dtb_image

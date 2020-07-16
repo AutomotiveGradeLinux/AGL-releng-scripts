@@ -8,10 +8,30 @@ metadata:
   kernel.version: {{ kernel_version }}
   kernel.defconfig_base: {{ kernel_defconfig_base }}
   kernel.defconfig: {{ kernel_defconfig }}
+  kernel.endian: {{ kernel_endian }}
   platform.mach: {{ device_mach }}
   platform.name: {{ device_type }}
+{%- if dtb %}
+  platform.dtb: {{ dtb }}
+{%- else %}
+  platform.dtb: None
+{%- endif %}
   git.url: {{ vcs_url }}
+  git.describe: {{ vcs_branch }}
   test.plan: {{ test_plan }}
+  test.plan_variant: {{ test_plan }}
   device.type: {{ device_type }}
   job.build_environment: {{ kernel_tree }}
+  job.file_server_resource: {{ resource_path }}
+  job.kernel_image: {{ kernel_image }}
+{%- if dtb_url %}
+  job.dtb_url: {{ dtb_url }}
+{%- else %}
+  job.dtb_url: None
+{%- endif %}
+{%- if initrd_url %}
+  job.initrd_url: {{ initrd_url }}
+{%- else %}
+  job.initrd_url: None
+{%- endif %}
  {% if (change_id) and (patch_set) %} git.url: https://gerrit.automotivelinux.org/gerrit/#/c/{{ change_id }}/{{ patch_set }} {% endif %}
