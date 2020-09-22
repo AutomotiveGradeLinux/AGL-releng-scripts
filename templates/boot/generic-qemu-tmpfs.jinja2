@@ -24,7 +24,7 @@ context:
 {%- if guestfs_interface is defined %}
     guestfs_interface: {{ guestfs_interface }}
 {%- endif %}
-    extra_options: ["{{ qemu_args }}"]
+    extra_options: ["{{ qemu_args }} -vnc unix:/tmp/vnc-{{ uniqid }}"]
 {% endblock %}
 {%- block deploy -%}
 {{ super() }}
