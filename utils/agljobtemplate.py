@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from urllib.parse import urljoin
 from urllib.parse import urlsplit
 import ast
-
+import random
 
 def get_extension(path):
     return path.split('.')[-1]
@@ -106,6 +106,11 @@ class Agljobtemplate(object):
         job['priority'] = priority
         job['build_type'] = build_type
         job['image_type'] = "AGL-%s" % build_type
+
+        if patchset != None:
+            job["uniqid"] = "AGL-%s-%s-%s-%d" % (machine, changeid, patchset, random.randint(1, 999999))
+        else:
+            job["uniqid"] = "AGL-%s-%s-%s-%d" % (machine, branch, version, random.randint(1, 999999))
 
         defaults, infra = parse_cfg_file(self._template_path, 'default.cfg', build_type)
 
