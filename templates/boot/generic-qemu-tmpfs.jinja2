@@ -21,6 +21,9 @@ context:
 {%- if qemu_memory is defined %}
     memory: {{ qemu_memory }}
 {%- endif %}
+{%- if qemu_model is defined %}
+    model: {{ qemu_model }}
+{%- endif %}
 {%- if guestfs_interface is defined %}
     guestfs_interface: {{ guestfs_interface }}
 {%- endif %}
