@@ -41,6 +41,9 @@ actions:
 {%- block boot %}
 {% endblock %}
 {%- block tests %}
+{%- if rootfs_type == "nbd" %}
+{% include "tests/veth.jinja2" %}
+{%- endif %}
 {%-for test_template in test_templates %}
 {% include test_template %}
 {%- endfor %}
