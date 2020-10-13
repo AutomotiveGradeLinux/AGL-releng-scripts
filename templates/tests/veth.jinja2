@@ -1,0 +1,8 @@
+- test:
+    timeout:
+      minutes: 4
+    definitions:
+    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
+      from: git
+      path: test-suites/short-smoke/network-veth.yaml
+      name: network-veth
