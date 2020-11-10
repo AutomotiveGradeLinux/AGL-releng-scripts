@@ -1,0 +1,21 @@
+- test:
+    timeout:
+      minutes: 5
+    definitions:
+    - repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: HACK-SPEC-3655
+          description: "Start geoclue weather services"
+          os:
+          - oe
+          scope:
+          - functional
+        run:
+          steps:
+            - afm-util start agl-service-geoclue
+            - afm-util start agl-service-weather
+      lava-signal: kmsg
+      from: inline
+      name: HACK-SPEC-3655
+      path: inline/hack-spec-3655.yaml
