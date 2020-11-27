@@ -5,6 +5,7 @@
     definitions:
     - repository: https://git.automotivelinux.org/src/qa-testdefinitions
       from: git
+      history: False
       path: test-suites/short-smoke/application-lifecycle.yaml
       name: application-lifecycle
       parameters:
@@ -13,3 +14,13 @@
 {%- else %}
         APPURL: "{{app_url_base}}/{{ app_changeid }}/{{ app_patchset }}/{{ app_branch }}/{{ sdk_arch }}"
 {%- endif %}
+
+- test:
+    timeout:
+      minutes: 15
+    definitions:
+    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
+      from: git
+      history: False
+      path: test-suites/short-smoke/dumpjournal.yaml
+      name: ci-dumpjournal
