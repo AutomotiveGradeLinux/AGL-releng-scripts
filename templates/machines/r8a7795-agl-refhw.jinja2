@@ -4,7 +4,7 @@
 {%- set device_mach = "renesas" %}
 {%- set device_type = "r8a7795-agl-refhw" %}
 # this DTB is on linux-renesas only, not mainlined
-{%- set dtb = dtb|default("r8a7795-agl-refhw") %}
+{%- set dtb = dtb|default("r8a7795-agl-refhw.dtb") %}
 {%- set kernel_image = kernel_image|default("Image") %}
 {%- set rootfs_type = rootfs_type|default("nbd") %}
 {%- set uboot_type = "booti" %}
