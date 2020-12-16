@@ -138,6 +138,9 @@ class Agljobtemplate(object):
                 if (machine == 'h3ulcb-kf'):
                     build_name = 'h3ulcb-nogfx'
                     machine_frag_url = 'h3ulcb'
+                if machine == "r8a7795-agl-refhw":
+                    build_name = 'h3ulcb-nogfx'
+                    machine_frag_url = 'h3ulcb'
                 if (machine == 'm3ulcb'):
                     build_name = machine + '-nogfx'
                 if machine == "upsquare":
