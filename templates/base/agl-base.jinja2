@@ -44,7 +44,7 @@ actions:
 {%- if rootfs_type == "nbd" %}
 {% include "tests/veth.jinja2" %}
 {%- endif %}
-{% if device_type == "r8a7795-h3ulcb-kf" or device_type == "bcm2711-rpi-4-b" %}
+{% if device_type == "r8a7795-h3ulcb-kf" or device_type == "bcm2711-rpi-4-b" or device_type == "r8a7795-agl-refhw" %}
 {% include "tests/hack-SPEC3655.jinja2" %}
 {%- endif %}
 {%-for test_template in test_templates %}
