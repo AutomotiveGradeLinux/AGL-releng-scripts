@@ -13,8 +13,14 @@
           - functional
         run:
           steps:
+            - afm-util kill agl-service-geoclue
+            - sleep 1
             - afm-util start agl-service-geoclue
+            - sleep 1
+            - afm-util kill agl-service-weather
+            - sleep 1
             - afm-util start agl-service-weather
+            - sleep 1
       lava-signal: kmsg
       from: inline
       name: HACK-SPEC-3655
