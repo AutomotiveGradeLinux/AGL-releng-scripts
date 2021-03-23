@@ -7,8 +7,16 @@ import os
 import json
 import urllib
 
-ptoken=os.environ["KCI_PUSH_TOKEN"]
-utoken=os.environ["KCI_UPLOAD_TOKEN"]
+if not "KCI_PUSH_TOKEN" in os.environ:
+    print("Missing env variable KCI_PUSH_TOKEN")
+    ptoken=None
+else:
+    ptoken=os.environ["KCI_PUSH_TOKEN"]
+if not "KCI_UPLOAD_TOKEN" in os.environ:
+    print("Missing env variable KCI_UPLOAD_TOKEN")
+    utoken=None
+else:
+    utoken=os.environ["KCI_UPLOAD_TOKEN"]
 
 parser = argparse.ArgumentParser(description="AGL create bmeta", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--arch', action='store', help="arch of the build", required=True)
@@ -48,9 +56,6 @@ with open(os.path.join(DIR_META, 'bmeta.json'), 'w') as json_file:
 def upload():
     path = bmeta["file_server_resource"]
 
-    headers = {
-        'Authorization': utoken,
-    }
     data = {
         'path': path,
     }
@@ -67,7 +72,12 @@ def upload():
     url = urljoin(args.api, 'upload')
     print("DATA====================")
     print(data)
-    return 0
+    if utoken is None:
+        print("No upload token, skipping upload")
+        return 0
+    headers = {
+        'Authorization': utoken,
+    }
     resp = requests.post(url, headers=headers, data=data, files=files)
     resp.raise_for_status()
     print(resp.reason)
@@ -87,7 +97,9 @@ def publish_kernel():
     }.items()}
     print("DATA====================")
     print(data)
-    return 0
+    if ptoken is None:
+        print("No publish token, skipping publish")
+        return 0
     headers = {
         'Authorization': ptoken,
         'Content-Type': 'application/json',
