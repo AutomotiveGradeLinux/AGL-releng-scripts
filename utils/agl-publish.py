@@ -7,17 +7,6 @@ import os
 import json
 import urllib
 
-if not "KCI_PUSH_TOKEN" in os.environ:
-    print("Missing env variable KCI_PUSH_TOKEN")
-    ptoken=None
-else:
-    ptoken=os.environ["KCI_PUSH_TOKEN"]
-if not "KCI_UPLOAD_TOKEN" in os.environ:
-    print("Missing env variable KCI_UPLOAD_TOKEN")
-    utoken=None
-else:
-    utoken=os.environ["KCI_UPLOAD_TOKEN"]
-
 parser = argparse.ArgumentParser(description="AGL create bmeta", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--arch', action='store', help="arch of the build", required=True)
 parser.add_argument('--branch', action='store', help="branch of the build", required=True)
@@ -26,6 +15,24 @@ parser.add_argument('--build_version', action='store', help="build_version of th
 parser.add_argument('--machine', action='store', help="machine of the build", required=True)
 parser.add_argument('--api', action='store', help="URL to kernelci backend API", required=True)
 args = parser.parse_args()
+
+KCI_PUSH_TOKEN = "AGL_KCIAPI_TOKEN"
+KCI_UPLOAD_TOKEN = "AGL_KCIAPI_TOKEN"
+
+if args.api == 'http://kernelci.dev.baylibre.com:8081/':
+    KCI_PUSH_TOKEN = "BAY_KCIAPI_TOKEN"
+    KCI_UPLOAD_TOKEN = "BAY_KCIAPI_TOKEN"
+
+if not KCI_PUSH_TOKEN in os.environ:
+    print("Missing env variable %s" % KCI_PUSH_TOKEN)
+    ptoken=None
+else:
+    ptoken=os.environ[KCI_PUSH_TOKEN]
+if not KCI_UPLOAD_TOKEN in os.environ:
+    print("Missing env variable %s" % KCI_UPLOAD_TOKEN)
+    utoken=None
+else:
+    utoken=os.environ[KCI_UPLOAD_TOKEN]
 
 bmeta = {}
 bmeta["arch"] = args.arch
