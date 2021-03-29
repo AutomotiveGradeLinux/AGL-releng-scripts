@@ -12,6 +12,7 @@ parser.add_argument('--arch', action='store', help="arch of the build", required
 parser.add_argument('--branch', action='store', help="branch of the build", required=True)
 parser.add_argument('--commit', action='store', help="commit of the build", required=True)
 parser.add_argument('--build_version', action='store', help="build_version of the build", required=True)
+parser.add_argument('--kernel_version', action='store', help="kernel_version of the build", default=None)
 parser.add_argument('--machine', action='store', help="machine of the build", required=True)
 parser.add_argument('--api', action='store', help="URL to kernelci backend API", required=True)
 args = parser.parse_args()
@@ -43,7 +44,10 @@ bmeta["defconfig_full"] = "defconfig+CONFIG_AGL=y"
 
 bmeta["git_branch"] = args.branch
 bmeta["git_commit"] = args.commit
-bmeta["git_describe"] = args.branch
+if args.kernel_version:
+    bmeta["git_describe"] = args.kernel_version
+else:
+    bmeta["git_describe"] = args.branch
 bmeta["job"] = "AGL-yocto"
 
 fsr = "AGL-yocto/%s/%s/%s/" % (args.branch, args.build_version, args.machine)
