@@ -47,8 +47,10 @@ bmeta["git_branch"] = args.branch
 bmeta["git_commit"] = args.commit
 if args.kernel_version:
     bmeta["git_describe"] = args.kernel_version
+    bmeta["git_describe_v"] = args.kernel_version
 else:
     bmeta["git_describe"] = args.branch
+    bmeta["git_describe_v"] = args.branch
 bmeta["job"] = "AGL-yocto"
 
 if args.fsr:
