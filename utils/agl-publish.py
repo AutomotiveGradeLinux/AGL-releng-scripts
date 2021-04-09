@@ -13,6 +13,7 @@ parser.add_argument('--branch', action='store', help="branch of the build", requ
 parser.add_argument('--commit', action='store', help="commit of the build", required=True)
 parser.add_argument('--build_version', action='store', help="build_version of the build", required=True)
 parser.add_argument('--kernel_version', action='store', help="kernel_version of the build", default=None)
+parser.add_argument('--fsr', action='store', help="File Server Resource path", default=None)
 parser.add_argument('--machine', action='store', help="machine of the build", required=True)
 parser.add_argument('--api', action='store', help="URL to kernelci backend API", required=True)
 args = parser.parse_args()
@@ -52,7 +53,10 @@ else:
     bmeta["git_describe_v"] = args.branch
 bmeta["job"] = "AGL-yocto"
 
-fsr = "AGL-yocto/%s/%s/%s/" % (args.branch, args.build_version, args.machine)
+if args.fsr:
+    fsr = args.fsr
+else:
+    fsr = "AGL-yocto/%s/%s/%s/" % (args.branch, args.build_version, args.machine)
 bmeta["file_server_resource"] = fsr
 
 print(bmeta)
