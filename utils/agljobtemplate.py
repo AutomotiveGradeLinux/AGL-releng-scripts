@@ -205,9 +205,6 @@ class Agljobtemplate(object):
         if build_version is not None:
             job['kernel_version'] = build_version
 
-        if build_id is not None:
-            job['kernel_defconfig'] = build_id
-
         if rfs_type is not None:
             job['rootfs_type'] = rfs_type
 
