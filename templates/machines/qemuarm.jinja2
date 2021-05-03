@@ -19,3 +19,5 @@
 {%- else %}
 	{%- set rfs_image = rfs_image|default("agl-demo-platform-qemuarm.ext4.xz") %}
 {%- endif %}
+{% set qemu_binary = 'qemu-system-arm' %}
+{% set qemu_docker = True %}

@@ -14,5 +14,10 @@
     timeout:
       minutes: {{ boot_timeout }}
     method: {{ boot_method|default("u-boot") }}
+{%- if qemu_docker %}
+    docker:
+      image: kernelci/qemu
+      binary: {{ qemu_binary }}
+{%- endif %}
 {%- include 'boot/agl-prompt.jinja' %}
 {%- endblock %}
