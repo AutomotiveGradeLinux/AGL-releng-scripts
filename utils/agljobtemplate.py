@@ -187,7 +187,7 @@ class Agljobtemplate(object):
         if 'all' in tests:
             tests = self.tests
         for t in tests:
-            if machine == 'bbe' and t == 'screenshot':
+            if machine == 'bbe' and t == 'screenshooter':
                 continue
             if t in self.tests:
                 test_templates.append(os.path.join(self.TESTS_DIR, t + '.jinja2'))
