@@ -1,0 +1,28 @@
+{%- extends 'boot/generic-uboot-tftp.jinja2' %}
+{%- set device_arch = "arm64" %}
+{%- set sdk_arch = "aarch64" %}
+{%- set device_mach = "renesas" %}
+{%- set device_type = "r8a7795-h3ulcb-kf" %}
+{%- set dtb = dtb|default("r8a7795-h3ulcb-4x2g.dtb") %}
+{%- set kernel_image = kernel_image|default("Image") %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set uboot_type = "booti" %}
+
+{%- if branch == 'jellyfish' or branch == 'halibut' %}
+#{%- set rfs_image = rfs_image|default("agl-image-ivi-crosssdk-h3ulcb.ext4.xz") %}
+  {%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') or (build_type == 'prerelease') %}
+    {%- set rfs_image = "agl-image-ivi-crosssdk-h3ulcb.ext4.xz" %}
+  {%- else %}
+    {%- set rfs_image = "agl-image-ivi-h3ulcb.ext4.xz" %}
+  {%- endif %}
+{% else %}
+#{%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-h3ulcb.ext4.xz") %}
+  {%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') or (build_type == 'prerelease') %}
+    {%- set rfs_image = "agl-demo-platform-crosssdk-h3ulcb.ext4.xz" %}
+  {%- else %}
+    {%- set rfs_image = "agl-demo-platform-h3ulcb.ext4.xz" %}
+  {%- endif %}
+{% endif %}
+
+{%- set initrd = "initramfs-netboot-image-h3ulcb.ext4.gz" %}
+{%- set yocto_machine = "h3ulcb" %}
