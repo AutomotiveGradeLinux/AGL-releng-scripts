@@ -13,14 +13,6 @@
       history: False
       path: test-suites/short-smoke/smoke-tests-basic.yaml
       name: release-smoke-tests-basic
-    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
-      from: git
-      history: False
-      path: test-suites/short-smoke/service-check.yaml
-      name: release-service-check
-      parameters:
-        BUILD_TAGS: "{{ BUILD_TAGS }}"
-        DEVICE_TAGS: "{{ DEVICE_TAGS }}"
 
 - test:
     timeout:
