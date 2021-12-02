@@ -8,16 +8,19 @@
       history: False
       path: test-suites/short-smoke/busybox.yaml
       name: ci-busybox
+      branch: lamprey
     - repository: https://git.automotivelinux.org/src/qa-testdefinitions
       from: git
       history: False
       path: test-suites/short-smoke/smoke-tests-basic.yaml
       name: ci-smoke-tests-basic
+      branch: lamprey
     - repository: https://git.automotivelinux.org/src/qa-testdefinitions
       from: git
       history: False
       path: test-suites/short-smoke/service-check.yaml
       name: ci-service-check
+      branch: lamprey
       parameters:
         BUILD_TAGS: "{{ BUILD_TAGS|join(' ')|lower }}"
         DEVICE_TAGS: "{{ DEVICE_TAGS|join(' ')|lower }}"
