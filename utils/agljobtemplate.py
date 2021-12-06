@@ -184,8 +184,11 @@ class Agljobtemplate(object):
                     if section[0] == "test_plan":
                         tests = ast.literal_eval(section[1])
 
+
         if 'all' in tests:
             tests = self.tests
+        if machine == 'qemuarm' or machine == 'qemuarm64':
+            tests.insert(0, "fixup-weston-watchdog")
         for t in tests:
             if machine == 'bbe' and t == 'screenshooter':
                 continue
