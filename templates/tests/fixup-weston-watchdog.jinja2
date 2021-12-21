@@ -8,11 +8,10 @@
           description: "extend watchdog on virtual"
         run:
           steps:
-          - sed -i -e "s#WatchdogSec=20#WatchdogSec=180#g" /lib/systemd/system/weston.service
+          - sed -i -e "s#WatchdogSec=20#WatchdogSec=240#g" /usr/lib/systemd/user/agl-session.target.wants/agl-compositor.service
           - systemctl daemon-reload
-          - systemctl restart weston.service
-          - systemctl restart homescreen.service
-          - sleep 90
+          - systemctl restart agl-session@agl-driver.service
+          - sleep 60
           - journalctl --no-pager -a -b
       from: inline
       name: fixup-weston-watchdog
