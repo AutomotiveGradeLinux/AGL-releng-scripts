@@ -16,7 +16,7 @@
 
 - test:
     timeout:
-      minutes: 60
+      minutes: 90
     definitions:
     - repository: https://git.linaro.org/qa/test-definitions.git
       from: git
@@ -24,4 +24,4 @@
       path: automated/linux/ptest/ptest.yaml
       name: release-linaro-ptest
       parameters:
-        TESTS: "acl attr coreutils dbus-test glib-2.0 lua"
+        TESTS: "dbus-test glib-2.0 lua"
