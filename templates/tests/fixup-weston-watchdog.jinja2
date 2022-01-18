@@ -8,7 +8,7 @@
           description: "extend watchdog on virtual"
         run:
           steps:
-          - sed -i -e "s#WatchdogSec=20#WatchdogSec=240#g" /usr/lib/systemd/user/agl-session.target.wants/agl-compositor.service
+          - sed -i -e "s#WatchdogSec=20#WatchdogSec=240#g" /usr/lib/systemd/user/agl-compositor.service
           - systemctl daemon-reload
           - systemctl restart agl-session@agl-driver.service
           - sleep 60
