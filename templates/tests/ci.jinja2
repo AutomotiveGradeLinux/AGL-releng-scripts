@@ -22,14 +22,3 @@
         BUILD_TAGS: "{{ BUILD_TAGS|join(' ')|lower }}"
         DEVICE_TAGS: "{{ DEVICE_TAGS|join(' ')|lower }}"
 
-- test:
-    timeout:
-      minutes: 90
-    definitions:
-    - repository: https://git.linaro.org/qa/test-definitions.git
-      from: git
-      history: False
-      path: automated/linux/ptest/ptest.yaml
-      name: ci-linaro-ptest
-      parameters:
-        TESTS: "dbus-test glib-2.0 lua"
