@@ -8,11 +8,16 @@
           description: "extend watchdog on virtual"
         run:
           steps:
-          - sed -i -e "s#WatchdogSec=20#WatchdogSec=240#g" /usr/lib/systemd/user/agl-compositor.service
+          # disable the watchdog - for slow systems
+          - sed -i -e "s#WatchdogSec=20#WatchdogSec=0#g" /usr/lib/systemd/user/agl-compositor.service
+          # disable the coredumps - for slow systems
+          - echo "kernel.core_pattern=/dev/null" > /etc/sysctl/50-coredump.conf
+          - sysctl -p /etc/sysctl.d/50-coredump.conf
+          # need to reload user-session and system daemon
+          - su - agl-driver -c 'export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1001/bus" ; systemctl --user daemon-reload'
           - systemctl daemon-reload
           - systemctl restart agl-session@agl-driver.service
-          - sleep 60
-          - journalctl --no-pager -a -b
+          - sleep 20
       from: inline
       name: fixup-weston-watchdog
       path: inline/fixup-weston-watchdog.yaml
