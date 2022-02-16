@@ -11,7 +11,7 @@
           # disable the watchdog - for slow systems
           - sed -i -e "s#WatchdogSec=20#WatchdogSec=0#g" /usr/lib/systemd/user/agl-compositor.service
           # disable the coredumps - for slow systems
-          - echo "kernel.core_pattern=/dev/null" > /etc/sysctl/50-coredump.conf
+          - echo "kernel.core_pattern=/dev/null" > /etc/sysctl.d/50-coredump.conf
           - sysctl -p /etc/sysctl.d/50-coredump.conf
           # need to reload user-session and system daemon
           - su - agl-driver -c 'export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1001/bus" ; systemctl --user daemon-reload'
