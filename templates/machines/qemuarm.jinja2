@@ -9,8 +9,8 @@
 {%- set qemu_model = "model=virtio" %}
 {%- set qemu_cpu = "cortex-a15" %}
 {%- set qemu_machine = "virt-2.11" %}
-{%- set qemu_memory = "4096" %}
-{%- set qemu_args = "-smp 2 -device intel-hda -device hda-duplex -device usb-ehci -device virtio-rng-pci -device VGA,vgamem_mb=64,edid=on -device qemu-xhci -device usb-tablet -device usb-kbd" %}
+{%- set qemu_memory = "2048" %}
+{%- set qemu_args = "-smp 2 -device intel-hda -device hda-duplex -device usb-ehci -device virtio-rng-pci -device VGA,vgamem_mb=128,edid=on -device qemu-xhci -device usb-tablet -device usb-kbd" %}
 {%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda verbose systemd.log_color=false mem=4096M vmalloc=192M memblock=debug cma=160M " %}
 {%- set guestfs_interface = "virtio" %}
 {%- set rootfs_type = rootfs_type|default("rootvd") %}
