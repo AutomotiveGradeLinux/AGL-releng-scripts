@@ -9,7 +9,7 @@ protocols:
 
 # context allows specific values to be overridden or included
 context:
-    extra_kernel_args: initrd={{ initrd }}
+    extra_kernel_args: initrd={{ initrd }} systemd.mask=systemd-networkd.service
 {%- endif %}
 {% endblock %}
 {%- block boot %}
