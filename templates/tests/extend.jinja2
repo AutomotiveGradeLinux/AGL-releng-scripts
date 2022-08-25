@@ -1,0 +1,10 @@
+
+- test:
+    timeout:
+      hours: 12
+    definitions:
+    - repository: https://git.automotivelinux.org/src/qa-testdefinitions
+      from: git
+      history: False
+      path: test-suites/release/agl-extend-test.yaml
+      name: extend-tests
