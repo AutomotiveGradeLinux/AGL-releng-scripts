@@ -1,0 +1,14 @@
+{%- extends 'boot/generic-uboot-tftp.jinja2' %}
+{%- set device_arch = "arm" %}
+{%- set sdk_arch = "arm" %}
+{%- set device_mach = "omap" %}
+{%- set device_type = "am335x-sancloud-bbe" %}
+{%- set dtb = dtb|default("am335x-sancloud-bbe.dtb") %}
+{%- set kernel_image = kernel_image|default("zImage") %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set uboot_type = "bootz" %}
+{%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') or (build_type == 'prerelease') %}
+	{%- set rfs_image = rfs_image|default("agl-telematics-demo-platform-bbe.ext4.xz") %}
+{%- else %}
+	{%- set rfs_image = rfs_image|default("agl-telematics-demo-platform-bbe.ext4.xz") %}
+{% endif %}
