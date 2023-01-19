@@ -1,5 +1,11 @@
 {%- extends 'base/agl-simple.jinja2' %}
 {%- if rootfs_type == 'nbd' %}
+{%- block main %}
+{{ super () }}
+# context allows specific values to be overridden or included
+context:
+    extra_kernel_args: systemd.mask=systemd-network-generator.service
+{%- endblock %}
 {%- block deploy %}
 {{ super() }}
     protocols:

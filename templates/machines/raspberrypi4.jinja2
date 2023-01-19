@@ -20,5 +20,5 @@
 {{ super() }}
 context:
   console_device: ttyS0
-  extra_kernel_args: " coherent_pool=1M 8250.nr_uarts=1 rw fstab=no "
+  extra_kernel_args: " coherent_pool=1M 8250.nr_uarts=1 rw fstab=no systemd.mask=systemd-network-generator.service"
 {% endblock %}
