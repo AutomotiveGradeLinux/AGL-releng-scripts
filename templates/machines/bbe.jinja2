@@ -8,7 +8,7 @@
 {%- set rootfs_type = rootfs_type|default("nbd") %}
 {%- set uboot_type = "bootz" %}
 {%- if (build_type == 'daily') or (build_type == 'release') or (build_type == 'snapshot') or (build_type == 'prerelease') %}
-	{%- set rfs_image = rfs_image|default("agl-demo-platform-crosssdk-bbe.ext4.xz") %}
+	{%- set rfs_image = rfs_image|default("agl-telematics-demo-platform-bbe.ext4.xz") %}
 {%- else %}
-	{%- set rfs_image = rfs_image|default("agl-demo-platform-bbe.ext4.xz") %}
+	{%- set rfs_image = rfs_image|default("agl-telematics-demo-platform-bbe.ext4.xz") %}
 {% endif %}
