@@ -146,7 +146,7 @@ class Agljobtemplate(object):
                 if machine == "upsquare":
                     machine_frag_url = "qemux86-64"
                     build_name = "qemux86-64"
-                if ( vcs_branch == "master" or vcs_branch == "koi" ) and (machine == "raspberrypi4" or machine == "raspberrypi4-64"):
+                if (machine == "raspberrypi4" or machine == "raspberrypi4-64"):
                     machine_frag_url = "raspberrypi4-64"
                     build_name = "raspberrypi4"
                     job['yocto_machine'] = "raspberrypi4-64"
