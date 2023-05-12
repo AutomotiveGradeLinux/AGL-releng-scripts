@@ -1,11 +1,5 @@
 {%- extends 'base/agl-base-defaults.jinja2' %}
 {%- block job %}
-{%- block metadata %}
-{% include 'base/agl-metadata.jinja2' %}
-{% endblock %}
-{% if do_callback %}
-{% include 'base/agl-callback-section.jinja2' %}
-{% endif %}
 {%- block main %}
 device_type: {{ device_type }}
 {%- if DEVICE_TAGS %}

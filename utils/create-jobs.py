@@ -42,7 +42,7 @@ def parse_cmdline(machines, tests, rfs_types):
     parser.add_argument('-o', '--output', dest='job_file', action='store',
                         help="destination file")
     parser.add_argument('-n', '--name', dest='job_name', action='store',
-                        help="job name", default='AGL-short-smoke-wip')
+                        help="job name", default='AGL-short-smoke')
     parser.add_argument('--rootfs-img', dest='rootfs_img', action='store',
                         help="The name of the root file system image (such as agl-demo-platform-raspberrypi3.ext4.xz)")
     parser.add_argument('--kernel-img', dest='kernel_img', action='store',
