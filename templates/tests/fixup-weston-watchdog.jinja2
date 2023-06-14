@@ -13,11 +13,8 @@
           # disable the coredumps - for slow systems
           - echo "kernel.core_pattern=/dev/null" > /etc/sysctl.d/50-coredump.conf
           - sysctl -p /etc/sysctl.d/50-coredump.conf
-          # need to reload user-session and system daemon
-          - su - agl-driver -c 'export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1001/bus" ; systemctl --user daemon-reload'
           - systemctl daemon-reload
-          #- systemctl restart agl-session@agl-driver.service
-          - sleep 20
+          - sleep 5
       from: inline
       name: fixup-weston-watchdog
       path: inline/fixup-weston-watchdog.yaml
