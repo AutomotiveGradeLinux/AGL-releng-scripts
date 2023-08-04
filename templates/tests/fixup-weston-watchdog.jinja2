@@ -9,7 +9,7 @@
         run:
           steps:
           # disable the watchdog - for slow systems
-          - sed -i -e "s#WatchdogSec=20#WatchdogSec=0#g" /usr/lib/systemd/user/agl-compositor.service
+          - sed -i -e "s#WatchdogSec=20#WatchdogSec=0#g" /usr/lib/systemd/system/agl-compositor.service
           # disable the coredumps - for slow systems
           - echo "kernel.core_pattern=/dev/null" > /etc/sysctl.d/50-coredump.conf
           - sysctl -p /etc/sysctl.d/50-coredump.conf
