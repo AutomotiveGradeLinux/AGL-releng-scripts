@@ -3,17 +3,23 @@
 
 
 SERVER="https://jsmoeller@lava.automotivelinux.org"
-MACHINES="dra7xx-evm m3ulcb qemux86-64 raspberrypi3"
-AGLVERSION="$1"
+MACHINES="qemux86-64 raspberrypi4"
+AGLBRANCH="$1"
+AGLVERSION="$2"
+
+if test x"" = x"${AGLBRANCH}" ; then
+    echo "Need to specify branch and version number to test"
+    exit 1
+fi
 
 if test x"" = x"${AGLVERSION}" ; then
-    echo "Need to specify version number to test"
+    echo "Need to specify branch and version number to test"
     exit 1
 fi
 
 for MACHINE in $MACHINES ; do
 
-./create-jobs.py --machine ${MACHINE} --url https://download.automotivelinux.org/AGL/upload/ci/flounder/${AGLVERSION}/${MACHINE}/deploy/images/${MACHINE}/ --callback-from lab-jsmoeller --test all --build-type release -n AGL-Flounder-${AGLVERSION}-${MACHINE} > /tmp/1.yaml
+./create-jobs.py --machine ${MACHINE} --url https://download.automotivelinux.org/AGL/upload/ci/${AGLBRANCH}/${AGLVERSION}/${MACHINE}/deploy/images/${MACHINE}/ --callback-from lab-jsmoeller --test all --build-type release -n AGL-${AGLBRANCH}-${AGLVERSION}-${MACHINE} > /tmp/1.yaml
 lava-tool submit-job https://jsmoeller@lava.automotivelinux.org /tmp/1.yaml
 
 done
