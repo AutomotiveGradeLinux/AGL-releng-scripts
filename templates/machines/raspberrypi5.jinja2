@@ -1,1 +1,25 @@
-{%- extends 'machines/raspberrypi4.jinja2' %}
+{%- extends 'boot/generic-uboot-tftp.jinja2' %}
+{%- set device_arch = "arm64" %}
+{%- set sdk_arch = "arm64" %}
+{%- set device_mach = "broadcom" %}
+{%- set device_type = "bcm2712-rpi-5-b" %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set kernel_image = kernel_image|default("Image") %}
+{%- set uboot_type = "booti" %}
+{%- if rootfs_type == 'nbd' %}
+    {%- set initrd = "initramfs-netboot-image-" + yocto_machine +".ext4.gz" %}
+{%- endif %}
+{%- set dtb = dtb|default("bcm2712-rpi-5-b.dtb") %}
+{%- if (build_type == 'snapshot') or (build_type == 'daily') or (build_type == 'release') or (build_type == 'prerelease') %}
+    {%- set rfs_image = rfs_image|default("agl-ivi-demo-qt-crosssdk-" + yocto_machine + ".ext4.xz") %}
+{%- else %}
+    {%- set rfs_image = rfs_image|default("agl-ivi-demo-qt-" + yocto_machine + ".ext4.xz") %}
+{%- endif %}
+{%- set boot_method = "minimal" %}
+
+{%- block main %}
+{{ super() }}
+context:
+  console_device: ttyAMA10
+  extra_kernel_args: " coherent_pool=1M rw fstab=no systemd.mask=systemd-network-generator.service"
+{% endblock %}
