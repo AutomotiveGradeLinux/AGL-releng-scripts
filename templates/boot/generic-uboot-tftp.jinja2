@@ -1,5 +1,5 @@
 {%- extends 'boot/generic-base-boot.jinja2' %}
-{%- set boot_method = "u-boot" %}
+{%- set boot_method = boot_method|default("u-boot") %}
 {%- block main %}
 {{ super() }}
 {%- if rootfs_type == 'nbd' %}
