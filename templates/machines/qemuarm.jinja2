@@ -10,7 +10,7 @@
 {%- set qemu_cpu = "cortex-a15" %}
 {%- set qemu_machine = "virt-2.11" %}
 {%- set qemu_memory = "2048" %}
-{%- set qemu_args = "-smp 2 -audiodev none,id=agl,out.channels=2,in.channels=1 -device ich9-intel-hda -device hda-micro,audiodev=agl -device usb-ehci -device virtio-rng-pci -device VGA,vgamem_mb=128,edid=on -device qemu-xhci -device usb-tablet -device usb-kbd" %}
+{%- set qemu_args = "-smp 4 -audiodev none,id=agl,out.channels=2,in.channels=1 -device ich9-intel-hda -device hda-micro,audiodev=agl -device usb-ehci -device virtio-rng-pci -device virtio-gpu-device -device VGA,vgamem_mb=128,edid=on -device qemu-xhci -device usb-tablet -device usb-kbd" %}
 {%- set qemu_cmdline = "console=ttyAMA0,115200 root=/dev/vda verbose earlyprintk systemd.log_color=false mem=2048M vmalloc=192M memblock=debug cma=160M " %}
 {%- set guestfs_interface = "virtio" %}
 {%- set rootfs_type = rootfs_type|default("rootvd") %}
