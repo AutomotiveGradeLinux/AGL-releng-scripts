@@ -1,0 +1,9 @@
+{%- extends 'boot/generic-grub-tftp.jinja2' %}
+{%- set device_arch = "riscv64" %}
+{%- set sdk_arch = "riscv64" %}
+{%- set device_type = "hifive-unmatched-a00" %}
+{%- set yocto_machine = "unmatched" %}
+{%- set kernel_image = kernel_image|default("Image.gz") %}
+{%- set rootfs_type = rootfs_type|default("nbd") %}
+{%- set rfs_image = rfs_image|default("agl-ivi-demo-flutter-unmatched.ext4.xz") %}
+{%- set dtb = dtb|default("hifive-unmatched-a00.dtb") %}

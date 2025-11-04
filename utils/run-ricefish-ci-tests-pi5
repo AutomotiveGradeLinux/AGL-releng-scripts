@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+
+SERVER="https://jsmoeller@lava.automotivelinux.org"
+MACHINES="raspberrypi5"
+AGLBRANCH="ricefish"
+AGLVERSION="$1"
+
+if test x"" = x"${AGLBRANCH}" ; then
+    echo "Need to specify branch and version number to test"
+    exit 1
+fi
+
+if test x"" = x"${AGLVERSION}" ; then
+    echo "Need to specify branch and version number to test"
+    exit 1
+fi
+
+for MACHINE in $MACHINES ; do
+
+./create-jobs.py --machine ${MACHINE} --url https://download.automotivelinux.org/AGL/upload/ci/${AGLBRANCH}/${AGLVERSION}/${MACHINE}/deploy/images/${MACHINE}/ --callback-from lab-jsmoeller --test all --build-type release -n AGL-${AGLBRANCH}-${AGLVERSION}-${MACHINE} > /tmp/1.yaml
+lava-tool submit-job https://jsmoeller@lava.automotivelinux.org /tmp/1.yaml
+
+done
